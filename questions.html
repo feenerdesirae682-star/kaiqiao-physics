@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>真题示范 · 开窍物理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="nav"></div>
+
+<header style="padding:72px 0 56px;border-bottom:1px solid var(--hair);">
+  <div class="wrap">
+    <div class="kicker" style="margin-bottom:18px;">§ 03 · 真题示范 / EXAM ARCHIVE</div>
+    <h1 class="h2" style="margin:0 0 18px;">大招在真题中的实战示范</h1>
+    <p style="font-family:var(--serif);font-size:18px;line-height:1.7;color:var(--ink-2);max-width:680px;margin:0;">近十年中高考原题与各省名校压轴，按 26 大核心模块分类。每题都对应一个大招与开窍秒杀解析 — 这是大招的"应用例题集"，验证理论。</p>
+  </div>
+</header>
+
+<section class="reveal" style="padding:80px 0 64px;">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="num">§ 03·a · 知识图谱</div>
+        <div class="title">26 大核心模块 · 初中 + 高中</div>
+      </div>
+      <div class="meta">点击模块展开 · 点击知识点查看简介</div>
+    </div>
+
+    <div style="display:flex;gap:14px;margin-bottom:24px;flex-wrap:wrap;">
+      <button class="filter-btn mod-filter on" data-l="all">全部 26</button>
+      <button class="filter-btn mod-filter" data-l="junior">初中 12 模块</button>
+      <button class="filter-btn mod-filter" data-l="senior">高中 14 模块</button>
+    </div>
+
+    <div id="modules" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--hair);border-left:1px solid var(--hair);"></div>
+  </div>
+</section>
+
+<div id="kp-modal" class="modal-back" onclick="closeModal('kp-modal')">
+  <div class="modal" onclick="event.stopPropagation()" style="max-width:560px;">
+    <div class="modal-head">
+      <button class="modal-close" onclick="closeModal('kp-modal')">✕</button>
+      <div id="kp-modal-chips" style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;"></div>
+      <h3 id="kp-modal-title"></h3>
+    </div>
+    <div class="modal-body" id="kp-modal-body"></div>
+  </div>
+</div>
+
+<section style="padding:64px 0 96px;background:var(--paper-2);border-top:1px solid var(--hair);">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="num">§ 03·b · 真题演练</div>
+        <div class="title">最新原卷 <em>·</em> 含开窍解析</div>
+      </div>
+      <div class="meta">点击任意题目展开秒杀解析</div>
+    </div>
+
+    <div style="display:flex;gap:14px;margin-bottom:32px;flex-wrap:wrap;">
+      <button class="filter-btn" data-f="all">全部真题</button>
+      <button class="filter-btn" data-f="senior">高考真题</button>
+      <button class="filter-btn" data-f="junior">中考真题</button>
+    </div>
+
+    <div id="qgrid" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;"></div>
+  </div>
+</section>
+
+<div id="footer"></div>
+
+<div id="q-modal" class="modal-back" onclick="closeModal('q-modal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <button class="modal-close" onclick="closeModal('q-modal')">✕</button>
+      <div id="q-modal-chips" style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;"></div>
+      <h3 id="q-modal-title"></h3>
+    </div>
+    <div class="modal-body" id="q-modal-body"></div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="shared.js"></script>
+<script>
+document.getElementById('nav').innerHTML = renderNav('questions');
+document.getElementById('footer').innerHTML = renderFooter();
+
+let openMod = -1;
+let modLevel = 'all';
+function modList() {
+  return KAIQIAO.modules.map((m,i) => ({...m, _i:i}))
+    .filter(m => modLevel === 'all' || m.level === modLevel);
+}
+function roman(n){
+  const r=['Ⅰ','Ⅱ','Ⅲ','Ⅳ','Ⅴ','Ⅵ','Ⅶ','Ⅷ','Ⅸ','Ⅹ','Ⅺ','Ⅻ','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII','XXIII','XXIV','XXV','XXVI'];
+  return r[n] || (n+1);
+}
+function renderMods() {
+  const list = modList();
+  document.getElementById('modules').innerHTML = list.map((m, vIdx) => {
+    const i = m._i;
+    const isOpen = openMod === i;
+    const tag = m.level === 'junior' ? '初中' : '高中';
+    const tagColor = m.level === 'junior' ? 'var(--ink-2)' : 'var(--vermillion)';
+    return `
+    <div style="border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:28px 24px;background:${isOpen?'var(--paper-2)':'var(--paper)'};transition:background .25s;">
+      <div style="cursor:pointer;" onclick="toggleMod(${i})">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;">
+          <span class="mono" style="font-size:10.5px;letter-spacing:0.16em;color:${tagColor};text-transform:uppercase;">${tag} · Vol. ${roman(vIdx)}</span>
+          <span style="font-family:var(--serif);font-size:24px;font-weight:300;color:var(--ink-3);transform:rotate(${isOpen?45:0}deg);transition:transform .3s;display:inline-block;">＋</span>
+        </div>
+        <h4 style="font-family:var(--serif);font-size:21px;font-weight:700;margin:0 0 16px;letter-spacing:-0.01em;">${m.title}</h4>
+      </div>
+      <ul style="list-style:none;padding:0;margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.6;color:var(--ink-2);">
+        ${(isOpen ? m.points : m.points.slice(0,3)).map((p,j) => `
+          <li onclick="openKP(${i},${j})" style="padding:7px 0;border-top:1px dotted var(--hair);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:color .2s;" onmouseover="this.style.color='var(--vermillion)'" onmouseout="this.style.color=''">
+            <span>· ${p.name}</span>
+            <span style="font-size:11px;color:var(--ink-3);">详 →</span>
+          </li>`).join('')}
+        ${!isOpen && m.points.length > 3 ? `<li style="padding:7px 0;border-top:1px dotted var(--hair);color:var(--ink-3);font-size:13px;">+${m.points.length-3} 个知识点 · 点击模块展开</li>` : ''}
+      </ul>
+    </div>`;
+  }).join('');
+}
+function toggleMod(i) { openMod = (openMod === i ? -1 : i); renderMods(); }
+function openKP(modIdx, ptIdx) {
+  if (openMod !== modIdx) { openMod = modIdx; renderMods(); }
+  const m = KAIQIAO.modules[modIdx];
+  const p = m.points[ptIdx];
+  const tag = m.level === 'junior' ? '初中' : '高中';
+  document.getElementById('kp-modal-title').textContent = p.name;
+  document.getElementById('kp-modal-chips').innerHTML = `<span class="chip ${m.level==='junior'?'':'red'}">${tag}</span><span class="chip">${m.title}</span>`;
+  document.getElementById('kp-modal-body').innerHTML = `
+    <div class="modal-section">
+      <h4>核心释义</h4>
+      <div class="pre" style="background:var(--paper-2);padding:20px 22px;border:1px solid var(--hair);font-family:var(--serif);font-size:15.5px;line-height:1.85;">${p.desc}</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:10px;">
+      <span class="mono" style="font-size:10.5px;color:var(--ink-3);letter-spacing:0.14em;">${m.title.toUpperCase()} · ${(ptIdx+1)+'/'+m.points.length}</span>
+      <a href="techniques.html" class="btn ghost" style="text-decoration:none;">查阅相关大招 →</a>
+    </div>
+  `;
+  openModal('kp-modal');
+}
+window.toggleMod = toggleMod;
+window.openKP = openKP;
+
+document.querySelectorAll('.mod-filter').forEach(b => {
+  b.onclick = () => {
+    modLevel = b.dataset.l;
+    document.querySelectorAll('.mod-filter').forEach(x => x.classList.toggle('on', x.dataset.l === modLevel));
+    openMod = -1;
+    renderMods();
+  };
+});
+renderMods();
+
+// questions
+let filter = 'all';
+document.querySelectorAll('[data-f]').forEach(b => {
+  b.onclick = () => {
+    filter = b.dataset.f;
+    document.querySelectorAll('[data-f]').forEach(x => x.classList.toggle('on', x.dataset.f === filter));
+    renderQs();
+  };
+});
+document.querySelector('[data-f="all"]').classList.add('on');
+
+function renderQs() {
+  const list = filter === 'all' ? KAIQIAO.questions : KAIQIAO.questions.filter(q => q.grade === filter);
+  document.getElementById('qgrid').innerHTML = list.map((q) => `
+    <button class="qcard" onclick='openQ(${KAIQIAO.questions.indexOf(q)})'>
+      <div style="display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;">
+        <span class="chip ${q.grade==='junior'?'':'red'}">${q.year} ${q.grade==='junior'?'中考':'高考'}</span>
+        <span class="chip">${q.province}</span>
+        <span class="chip" style="border-color:transparent;color:var(--ink-3);margin-left:auto;">${q.module}</span>
+      </div>
+      <h3 style="font-family:var(--serif);font-size:22px;font-weight:700;margin:0 0 14px;letter-spacing:-0.01em;">${q.topic}</h3>
+      <p style="font-family:var(--serif);font-size:15px;line-height:1.7;color:var(--ink-2);margin:0;">${q.content.split('\\n')[0].slice(0,110)}…</p>
+      <div style="margin-top:24px;display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px dotted var(--hair);">
+        <span class="mono" style="font-size:11px;color:var(--ink-3);letter-spacing:0.1em;">压轴级 · 含解析</span>
+        <span style="font-family:var(--serif);color:var(--vermillion);font-size:14px;">展开 →</span>
+      </div>
+    </button>
+  `).join('');
+}
+renderQs();
+
+function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+window.openModal = openModal; window.closeModal = closeModal;
+
+function openQ(idx) {
+  const q = KAIQIAO.questions[idx];
+  document.getElementById('q-modal-title').textContent = q.topic;
+  document.getElementById('q-modal-chips').innerHTML = `<span class="chip ${q.grade==='junior'?'':'red'}">${q.year} ${q.grade==='junior'?'中考':'高考'}</span><span class="chip">${q.province}</span><span class="chip">${q.module}</span>`;
+  document.getElementById('q-modal-body').innerHTML = `
+    <div class="modal-section"><h4>试卷原题</h4><div class="pre" style="background:var(--paper-2);padding:20px 22px;border:1px solid var(--hair);">${q.content}</div></div>
+    <div class="modal-section summary"><h4 style="color:var(--vermillion);">开窍独家解析</h4><div class="pre">${q.analysis}</div></div>
+    <div style="text-align:right;margin-top:16px;"><a href="techniques.html" class="btn ghost">查阅对应大招 →</a></div>
+  `;
+  openModal('q-modal');
+}
+window.openQ = openQ;
+</script>
+</body>
+</html>
