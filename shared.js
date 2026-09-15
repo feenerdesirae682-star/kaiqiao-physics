@@ -1,6 +1,7 @@
 // 共享交互 — 主题、滚动揭示、导航、计数器
 (function() {
-  const stored = localStorage.getItem('kq-theme');
+  let stored;
+  try { stored = localStorage.getItem('kq-theme'); } catch {}
   if (stored === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
 
   window.toggleTheme = function() {
@@ -8,7 +9,7 @@
     const next = cur === 'dark' ? 'light' : 'dark';
     if (next === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
     else document.documentElement.removeAttribute('data-theme');
-    localStorage.setItem('kq-theme', next);
+    try { localStorage.setItem('kq-theme', next); } catch {}
     updateThemeIcon();
   };
 
@@ -78,20 +79,20 @@
 window.renderNav = function(active) {
   const items = [
     ['index.html', '首页', 'home'],
-    ['techniques.html', '百大大招库', 'techniques'],
-    ['questions.html', '真题示范', 'questions'],
+    ['techniques.html', '物理大招库', 'techniques'],
+    ['questions.html', '例题示范', 'questions'],
     ['about.html', '名师档案', 'about']
   ];
-  return `<nav class="topbar">
+  return `<a class="skip-link" href="#main-content">跳到正文</a><nav class="topbar" aria-label="主导航">
     <div class="topbar-inner">
       <a href="index.html" class="brand" aria-label="开窍物理首页">
         <span class="seal-glyph">开</span>
         开窍物理<small>KAIQIAO · PHYS</small>
       </a>
-      <div class="nav-links">
-        ${items.map(([href, label, key]) => `<a href="${href}" class="${active === key ? 'active' : ''}">${label}</a>`).join('')}
+      <div id="main-navigation" class="nav-links">
+        ${items.map(([href, label, key]) => `<a href="${href}" class="${active === key ? 'active' : ''}" ${active === key ? 'aria-current="page"' : ''}>${label}</a>`).join('')}
       </div>
-      <div class="nav-meta">
+      <div class="nav-meta"><button class="menu-toggle" aria-expanded="false" aria-controls="main-navigation" aria-label="打开导航菜单">菜单 ☰</button>
         <button class="theme-toggle" onclick="toggleTheme()" aria-label="切换明暗主题">
           <svg class="glyph-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
           <svg class="glyph-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -110,8 +111,8 @@ window.renderFooter = function() {
     <div>
       <h5>大招体系</h5>
       <a href="index.html">首页</a>
-      <a href="techniques.html">百大大招库</a>
-      <a href="questions.html">真题示范</a>
+      <a href="techniques.html">物理大招库</a>
+      <a href="questions.html">例题示范</a>
       <a href="about.html">名师档案</a>
     </div>
     <div>
@@ -124,3 +125,28 @@ window.renderFooter = function() {
   <div class="colophon"><span>© ${new Date().getFullYear()} 开窍物理教研.</span><span>Set in Noto Serif SC &amp; EB Garamond.</span></div>
   </div></footer>`;
 };
+
+
+// 小屏菜单与键盘操作共用状态；离开小屏时清理展开状态。
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.portrait-image').forEach(img => {
+    const showFallback = () => { img.hidden = true; };
+    img.addEventListener('error', showFallback);
+    if (img.complete && img.naturalWidth === 0) showFallback();
+  });
+  const button = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.topbar');
+  if (!button || !nav) return;
+  const setOpen = open => {
+    nav.classList.toggle('menu-open', open);
+    button.setAttribute('aria-expanded', String(open));
+    button.setAttribute('aria-label', open ? '关闭导航菜单' : '打开导航菜单');
+    button.textContent = open ? '收起 ✕' : '菜单 ☰';
+  };
+  button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+  nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('click', e => { if (!nav.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') { setOpen(false); button.focus(); } });
+  const mobile = matchMedia('(max-width: 880px)');
+  mobile.addEventListener('change', () => { if (!mobile.matches) setOpen(false); });
+});
