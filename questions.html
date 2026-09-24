@@ -176,14 +176,14 @@ function renderQs() {
   document.getElementById('qgrid').innerHTML = list.map((q) => `
     <button class="qcard" onclick='openQ(${KAIQIAO.questions.indexOf(q)})'>
       <div style="display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;">
-        <span class="chip ${q.grade==='junior'?'':'red'}">${q.year} ${q.grade==='junior'?'中考':'高考'}</span>
+        <span class="chip ${q.grade==='junior'?'':'red'}">${q.source ? q.source : `${q.year} ${q.grade==='junior'?'中考':'高考'}`}</span>
         <span class="chip">${q.province}</span>
         <span class="chip" style="border-color:transparent;color:var(--ink-3);margin-left:auto;">${q.module}</span>
       </div>
       <h3 style="font-family:var(--serif);font-size:22px;font-weight:700;margin:0 0 14px;letter-spacing:-0.01em;">${q.topic}</h3>
       <p style="font-family:var(--serif);font-size:15px;line-height:1.7;color:var(--ink-2);margin:0;">${q.content.split('\\n')[0].slice(0,110)}…</p>
       <div style="margin-top:24px;display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px dotted var(--hair);">
-        <span class="mono" style="font-size:11px;color:var(--ink-3);letter-spacing:0.1em;">压轴级 · 含解析</span>
+        <span class="mono" style="font-size:11px;color:var(--ink-3);letter-spacing:0.1em;">${q.source ? '母题改编 · 含解析' : '压轴级 · 含解析'}</span>
         <span style="font-family:var(--serif);color:var(--vermillion);font-size:14px;">展开 →</span>
       </div>
     </button>
@@ -198,7 +198,7 @@ window.openModal = openModal; window.closeModal = closeModal;
 function openQ(idx) {
   const q = KAIQIAO.questions[idx];
   document.getElementById('q-modal-title').textContent = q.topic;
-  document.getElementById('q-modal-chips').innerHTML = `<span class="chip ${q.grade==='junior'?'':'red'}">${q.year} ${q.grade==='junior'?'中考':'高考'}</span><span class="chip">${q.province}</span><span class="chip">${q.module}</span>`;
+  document.getElementById('q-modal-chips').innerHTML = `<span class="chip ${q.grade==='junior'?'':'red'}">${q.source ? q.source : `${q.year} ${q.grade==='junior'?'中考':'高考'}`}</span><span class="chip">${q.province}</span><span class="chip">${q.module}</span>`;
   document.getElementById('q-modal-body').innerHTML = `
     <div class="modal-section"><h4>试卷原题</h4><div class="pre" style="background:var(--paper-2);padding:20px 22px;border:1px solid var(--hair);">${q.content}</div></div>
     <div class="modal-section summary"><h4 style="color:var(--vermillion);">开窍独家解析</h4><div class="pre">${q.analysis}</div></div>

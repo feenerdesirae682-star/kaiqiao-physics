@@ -17,7 +17,7 @@
 
 - `techDetail`：大招详解，键是大招名。字段 `tagline` / `explanation` / `example` / `summary` / `time.before` / `time.after`
 - `seniorCategories` / `juniorCategories`：大招分类与顺序，`items` 里的名字必须在 `techDetail` 有对应条目，否则页面显示「未编」
-- `questions`：真题，字段 `grade` / `year` / `province` / `module` / `topic` / `content` / `analysis`
+- `questions`：真题与母题改编题，字段 `grade` / `year` / `province` / `module` / `topic` / `content` / `analysis`；改编题多一个 `source: '母题改编'`，页面据此显示"母题改编"而不是"年份 高考"
 - `modules`：26 个模块的知识点图谱
 - `testimonials`：学员反馈
 
