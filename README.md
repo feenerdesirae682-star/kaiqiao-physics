@@ -29,15 +29,24 @@
 仅需 Node.js 即可检查数据与本地资源链接：
 
 ```sh
-node tests/check.cjs
+node tests/run.cjs
 ```
 
-完整浏览器检查需要已安装 Playwright 和 Microsoft Edge；不启动网页服务：
+完整浏览器检查需要已安装 Playwright 和对应浏览器；不启动网页服务：
 
 ```sh
-node tests/check.cjs --browser
+node tests/run.cjs --browser
 ```
 
-可通过 `PLAYWRIGHT_MODULE` 指定已有 Playwright 模块路径，通过 `BROWSER_PATH` 指定浏览器路径，通过 `SCREENSHOT_DIR` 保存检查截图。检查涵盖四页、五种宽度、两条入门学习路线、搜索空状态、目录提示、原生弹窗、主题保持及全部例题的关联链接。
+检查涵盖四页七种宽度、两条入门学习路线、搜索空状态、目录提示、主题保持、全部例题关联链接，以及下述来源与移动端回归。
 
 第一轮内容调整与待办参见 `CONTENT_REVIEW.md`。
+## PR #1 后续检查
+
+本次补丁基于 PR 头提交 `6905796432130e7e0ea02c5f548ae254ef831807`，保留 20 个详解、16 道示例与原有学习流程。来源状态规则见 [SOURCE_POLICY.md](SOURCE_POLICY.md)。
+
+运行 `node tests/run.cjs` 执行数据、链接和来源策略检查。运行 `node tests/run.cjs --browser` 额外执行页面与移动阅读回归；需要已安装 Playwright 及对应浏览器。无需启动服务，测试直接打开本地 HTML。
+
+可通过 `PLAYWRIGHT_MODULE` 指向已有 Playwright 包，通过 `BROWSER_PATH` 指定浏览器可执行文件；`BROWSER_ENGINE` 支持 `chromium`（默认）、`webkit`、`firefox`。切换引擎时清除不匹配的 `BROWSER_PATH`。可设置 `SCREENSHOT_DIR` 输出截图。缺少引擎、启动失败或断言失败均返回非零退出码，不视为通过。
+
+新增浏览器检查包括四页七种宽度、320/390 像素竖屏与 568×320 横屏下全部题目和方法详情、触控关闭、关闭按钮尺寸与可见性、焦点恢复、导航断点切换，以及缺少原生 dialog、旧版 MediaQueryList 和存储不可用的模拟环境。模拟降级不等于 iOS Safari 真机或 WebKit 验证；本轮实际运行环境和结果见交付报告。

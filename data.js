@@ -1,4 +1,4 @@
-// 共享数据 — 大招、真题、模块
+// 共享数据 — 大招、学习示例、模块
 window.KAIQIAO = (function() {
 
   const techDetail = {
@@ -188,52 +188,52 @@ window.KAIQIAO = (function() {
   ];
 
   const questions = [
-    { id: "wave-phase", techniques: [], knowledgeModule: "机械振动与波", sourceStatus: "示例 · 原卷出处待核对", grade: 'senior', year: '2025', province: '新课标卷', module: '高中机械波', topic: '人浪波动模型',
+    { id: "wave-phase", techniques: [], knowledgeModule: "机械振动与波", source: { status: 'unverified', originalLabel: { year: '2025', paper: '新课标卷' } }, grade: 'senior', module: '高中机械波', topic: '人浪波动模型',
       content: '一组身高相近的学生沿一直线等间隔排成一排，从左边第一位同学开始，依次周期性地"下蹲、起立"，整个队列呈现类似简谐波的波浪效果。假定形成的波形波长为 4m，左边第一位同学蹲至最低点时，队列中另一同学恰好完全站直（达到最高点），则两位同学间的距离可能是\n\nA. 1m    B. 2m    C. 3m    D. 4m',
       analysis: '本质是机械波的相位差分析。\n\n按题干约定，蹲至最低点是波谷，完全站直是波峰。\n波谷与波峰相差半个波长的奇数倍：Δx=(n+½)λ。\nλ=4m，故 Δx=2m、6m、10m……\n选项中只有 2m 符合，答案：B。' },
-    { id: "transformer-tap", techniques: [], knowledgeModule: "交变电流 · 电磁波", sourceStatus: "示例 · 原卷出处待核对", grade: 'senior', year: '2025', province: '河北卷', module: '高中交变电流', topic: '变压器抽头切换',
+    { id: "transformer-tap", techniques: [], knowledgeModule: "交变电流 · 电磁波", source: { status: 'unverified', originalLabel: { year: '2025', paper: '河北卷' } }, grade: 'senior', module: '高中交变电流', topic: '变压器抽头切换',
       content: '丰宁抽水蓄能电站通过理想变压器调节输出电压 U₂，输入电压 U₁ 不变。已知副线圈总匝数为 n，分接头 1、2 间和 2、3 间的线圈匝数相同，均为 n/10。开关 S 接 3 时输出 u₂ = Uₘ sin(ωt)，求 S 接 2 时 u₂-t 表达式。',
       analysis: 'U₁ 恒定，输出电压 U₂ 与输出匝数成正比。\n\n接 3 时：匝数 n，幅值 Uₘ。\n接 2 时：匝数 (n − n/10) = 0.9 n。\n\n比例得新幅值 U′ₘ = 0.9 Uₘ。频率 ω 不变。\n\n表达式：u₂′ = 0.9 Uₘ sin(ωt)。' },
-    { id: "adiabatic-compression", techniques: ["理想气体温体双看法"], knowledgeModule: "分子动理论 · 热力学", sourceStatus: "示例 · 原卷出处待核对", grade: 'senior', year: '2025', province: '重庆卷', module: '高中热力学', topic: '气袋绝热压缩',
+    { id: "adiabatic-compression", techniques: ["理想气体温体双看法"], knowledgeModule: "分子动理论 · 热力学", source: { status: 'unverified', originalLabel: { year: '2025', paper: '重庆卷' } }, grade: 'senior', module: '高中热力学', topic: '气袋绝热压缩',
       content: '易碎物品运输采用缓冲气袋。某次撞击中，气袋被压缩，不计袋内气体与外界的热交换，则该过程中袋内气体（视为理想气体）\n\nA．分子热运动的平均动能增加\nB．内能减小\nC．压强减小\nD．对外界做正功',
       analysis: '"不计热交换" → Q = 0；"被压缩" → 外界做功，W > 0。\n\n热一律 ΔU = W + Q → ΔU > 0，内能增加。\n理想气体内能由温度决定，温度升高。\n温度升高 → 分子平均动能增加。\n\n答案：A。' },
-    { id: "melting-ice", techniques: ["冰化水液面升降速判"], knowledgeModule: "浮力", sourceStatus: "示例 · 原卷出处待核对", grade: 'junior', year: '2025', province: '广州中考', module: '初中力学压轴', topic: '冰化盐水液面变化',
+    { id: "melting-ice", techniques: ["冰化水液面升降速判"], knowledgeModule: "浮力", source: { status: 'unverified', originalLabel: { year: '2025', paper: '广州中考' } }, grade: 'junior', module: '初中力学压轴', topic: '冰化盐水液面变化',
       content: '密度为 0.9 × 10³ kg/m³ 的纯冰块漂浮在浓盐水（密度 1.1 × 10³ kg/m³）中。忽略融化水与盐水混合引起的体积变化，当冰块完全融化为水后，液面将\n\nA. 上升    B. 下降    C. 不变    D. 无法确定',
       analysis: '使用「冰化水液面升降速判」：先确认纯冰漂浮，并忽略混合引起的体积变化。\n\n冰块漂浮在密度比水大的浓盐水中。化成水后水的密度小于盐水，等质量的水体积更大，液面上升。\n\n答案：A。' },
-    { id: "variable-resistance", techniques: ["电表示数变化量比值法"], knowledgeModule: "电流 · 电路 · 欧姆定律", sourceStatus: "示例 · 原卷出处待核对", grade: 'junior', year: '2025', province: '江苏中考', module: '初中电学压轴', topic: '动态电路求定值电阻',
+    { id: "variable-resistance", techniques: ["电表示数变化量比值法"], knowledgeModule: "电流 · 电路 · 欧姆定律", source: { status: 'unverified', originalLabel: { year: '2025', paper: '江苏中考' } }, grade: 'junior', module: '初中电学压轴', topic: '动态电路求定值电阻',
       content: '电源电压未知且恒定。定值电阻 R₀ 与滑动变阻器 R 串联。电压表测量变阻器两端电压，电流表测串联电流。滑片移动过程中，电压表示数从 6V 变化到 2V，电流表示数从 0.2A 变化到 0.6A。求定值电阻 R₀ 的阻值。',
       analysis: '使用「电表示数变化量比值法」。\n\n电源电压恒定，定值电阻的电压变化量等于变阻器电压变化量。\n\n  R₀ = |ΔU / ΔI| = |6 − 2| / |0.2 − 0.6| = 4 / 0.4 = 10 Ω。' },
-    { id: "electric-potential", techniques: [], knowledgeModule: "静电场", sourceStatus: "示例 · 原卷出处待核对", grade: 'senior', year: '2024', province: '全国甲卷', module: '高中静电场', topic: '三电荷电势叠加',
+    { id: "electric-potential", techniques: [], knowledgeModule: "静电场", source: { status: 'unverified', originalLabel: { year: '2024', paper: '全国甲卷' } }, grade: 'senior', module: '高中静电场', topic: '三电荷电势叠加',
       content: '边长为 a 的等边三角形顶点放置三个等量正电荷 +q。求三角形中心处的电势及外力将电荷 Q 从无穷远缓慢移至中心所做的功（无穷远电势取零）。',
       analysis: '中心到顶点距离 r = a/√3。\n\n中心电势：U = 3·kq/r = 3√3·kq/a。\n\n外力缓慢移动电荷 Q：W外 = Q·ΔU = Q·(3√3 kq/a − 0)。\n\n方向沿轴对称，无需积分。' },
-    { id: "conical-pendulum", techniques: ["圆锥摆等高等时律"], knowledgeModule: "圆周运动 · 万有引力", sourceStatus: "示例 · 原卷出处待核对", grade: 'senior', year: '2024', province: '北京卷', module: '高中圆周运动', topic: '圆锥摆周期与角度',
+    { id: "conical-pendulum", techniques: ["圆锥摆等高等时律"], knowledgeModule: "圆周运动 · 万有引力", source: { status: 'unverified', originalLabel: { year: '2024', paper: '北京卷' } }, grade: 'senior', module: '高中圆周运动', topic: '圆锥摆周期与角度',
       content: '一小球用长 L 的轻绳系于天花板，做匀速圆周运动，绳与竖直方向夹角为 θ。求小球运动的周期 T。',
       analysis: '受力分析：重力 mg 与绳张力 F 的合力提供向心力（周期仍记为 T）。\n\ntan θ = F向 / mg = mω²·r / mg\n圆周半径 r = L sinθ。\n\n化简得 ω² = g/(L cosθ)，所以\n  T = 2π√(L cosθ / g)。\n\n同一重力加速度下，悬点到圆周轨道平面的竖直距离 h=L cosθ 相同，周期才相同；仅悬点同高不足以判断。' },
-    { id: "elastic-collision", techniques: ["弹性碰撞双极值定论", "碰撞恢复系数 e 法"], knowledgeModule: "动量 · 碰撞", sourceStatus: "示例 · 原卷出处待核对", grade: 'senior', year: '2024', province: '湖南卷', module: '高中动量', topic: '弹性碰撞速度交换',
+    { id: "elastic-collision", techniques: ["弹性碰撞双极值定论", "碰撞恢复系数 e 法"], knowledgeModule: "动量 · 碰撞", source: { status: 'unverified', originalLabel: { year: '2024', paper: '湖南卷' } }, grade: 'senior', module: '高中动量', topic: '弹性碰撞速度交换',
       content: '质量为 m 的小球 A 以速度 v₀ 撞向静止的质量为 m 的小球 B，发生弹性碰撞。碰后两球速度分别是多少？',
       analysis: '弹性碰撞同时满足动量守恒与动能守恒。\n\n等质量一动一静弹性碰撞 → 速度完全交换。\n  v_A′ = 0\n  v_B′ = v₀\n\n口诀：等质交换、不等质代公式。' },
-    { id: "motional-emf", techniques: [], knowledgeModule: "磁场 · 电磁感应", sourceStatus: "示例 · 原卷出处待核对", grade: 'senior', year: '2023', province: '新高考Ⅰ卷', module: '高中电磁感应', topic: '单杆切割磁感线',
+    { id: "motional-emf", techniques: [], knowledgeModule: "磁场 · 电磁感应", source: { status: 'unverified', originalLabel: { year: '2023', paper: '新高考Ⅰ卷' } }, grade: 'senior', module: '高中电磁感应', topic: '单杆切割磁感线',
       content: '在磁感应强度 B = 0.5 T 的匀强磁场中，长 L = 0.4 m 的导体棒以速度 v = 2 m/s 垂直切割磁感线。求棒中感应电动势 ε。',
       analysis: '动生电动势 ε = BLv（B、L、v 三两垂直）。\n\n代入：ε = 0.5 × 0.4 × 2 = 0.4 V。\n\n方向用右手定则。' },
-    { id: "double-slit", techniques: [], knowledgeModule: "光学 · 原子物理", sourceStatus: "示例 · 原卷出处待核对", grade: 'senior', year: '2023', province: '浙江卷', module: '高中光学', topic: '双缝干涉条纹间距',
+    { id: "double-slit", techniques: [], knowledgeModule: "光学 · 原子物理", source: { status: 'unverified', originalLabel: { year: '2023', paper: '浙江卷' } }, grade: 'senior', module: '高中光学', topic: '双缝干涉条纹间距',
       content: '在双缝干涉实验中，双缝间距 d = 0.2 mm，屏距 L = 1 m，单色光波长 λ = 600 nm。求相邻亮纹间距 Δy。',
       analysis: '相邻亮纹间距 Δy = λL/d。\n\n代入：Δy = (600×10⁻⁹ × 1) / (0.2×10⁻³) = 3×10⁻³ m = 3 mm。\n\n缝距越小、屏距越大，条纹越疏。' },
-    { id: "satellite-orbits", techniques: ["天体高低轨定性口诀"], knowledgeModule: "圆周运动 · 万有引力", sourceStatus: "示例 · 原卷出处待核对", grade: 'senior', year: '2024', province: '山东卷', module: '高中万有引力', topic: '高低轨参数比较',
+    { id: "satellite-orbits", techniques: ["天体高低轨定性口诀"], knowledgeModule: "圆周运动 · 万有引力", source: { status: 'unverified', originalLabel: { year: '2024', paper: '山东卷' } }, grade: 'senior', module: '高中万有引力', topic: '高低轨参数比较',
       content: '同步卫星与近地卫星相比，哪些物理量更大、哪些更小？（线速度、角速度、周期、向心加速度）',
       analysis: '应用「高轨低速大周期」六字真言。\n\n由 GMm/r² = mv²/r = mω²r 可得：\n  v = √(GM/r)，r ↑ → v ↓\n  ω = √(GM/r³)，r ↑ → ω ↓\n  T = 2π√(r³/GM)，r ↑ → T ↑\n  a = GM/r²，r ↑ → a ↓\n\n答案：只有周期更大，其余更小。' },
-    { id: "floating-block", techniques: [], knowledgeModule: "浮力", sourceStatus: "示例 · 原卷出处待核对", grade: 'junior', year: '2024', province: '上海中考', module: '初中浮力', topic: '木块漂浮排水量',
+    { id: "floating-block", techniques: [], knowledgeModule: "浮力", source: { status: 'unverified', originalLabel: { year: '2024', paper: '上海中考' } }, grade: 'junior', module: '初中浮力', topic: '木块漂浮排水量',
       content: '体积 V = 1000 cm³、密度 ρ = 0.6×10³ kg/m³ 的木块漂浮在水中。求露出水面部分的体积 V露。',
       analysis: '漂浮条件：F浮 = G。\n\nρ水 g V排 = ρ木 g V\n V排 = (ρ木/ρ水)·V = 0.6 × 1000 = 600 cm³\n V露 = V − V排 = 400 cm³。' },
-    { id: "parallel-power", techniques: [], knowledgeModule: "电功率 · 电与磁 · 家庭电路", sourceStatus: "示例 · 原卷出处待核对", grade: 'junior', year: '2024', province: '北京中考', module: '初中电学', topic: '并联电路功率比',
+    { id: "parallel-power", techniques: [], knowledgeModule: "电功率 · 电与磁 · 家庭电路", source: { status: 'unverified', originalLabel: { year: '2024', paper: '北京中考' } }, grade: 'junior', module: '初中电学', topic: '并联电路功率比',
       content: '两个电阻 R₁ = 10 Ω 与 R₂ = 20 Ω 并联在 6V 电源上。求两个电阻消耗的电功率之比 P₁:P₂。',
       analysis: '并联电路两端电压相同。\n\n用 P = U²/R：\n  P₁ : P₂ = R₂ : R₁ = 20 : 10 = 2 : 1\n\n口诀：并联功率与电阻成反比。' },
-    { id: "convex-lens", techniques: [], knowledgeModule: "光现象", sourceStatus: "示例 · 原卷出处待核对", grade: 'junior', year: '2024', province: '浙江中考', module: '初中光学', topic: '凸透镜成像规律',
+    { id: "convex-lens", techniques: [], knowledgeModule: "光现象", source: { status: 'unverified', originalLabel: { year: '2024', paper: '浙江中考' } }, grade: 'junior', module: '初中光学', topic: '凸透镜成像规律',
       content: '焦距 f = 10 cm 的凸透镜，物距 u = 15 cm 时，成什么样的像？应用是什么？',
       analysis: '判别：f < u < 2f → 倒立、放大、实像。\n\n用「一焦分虚实、二焦分大小」口诀：\n  u > f：实像\n  u < 2f：放大\n\n应用：投影仪、幻灯机。\n像距：v = uf/(u−f) = 30 cm。' },
-    { id: "water-pressure", techniques: [], knowledgeModule: "压强", sourceStatus: "示例 · 原卷出处待核对", grade: 'junior', year: '2024', province: '广东中考', module: '初中压强', topic: '液体压强深度计算',
+    { id: "water-pressure", techniques: [], knowledgeModule: "压强", source: { status: 'unverified', originalLabel: { year: '2024', paper: '广东中考' } }, grade: 'junior', module: '初中压强', topic: '液体压强深度计算',
       content: '在深 h = 0.5 m 的水池底部，距水面多深处水的压强等于 4.9×10³ Pa？（g = 9.8 N/kg）',
       analysis: 'p = ρgh。\n\nh = p / (ρg) = 4.9×10³ / (1.0×10³ × 9.8) = 0.5 m。\n\n注意：液体压强只与深度和密度有关。' },
-    { id: "specific-heat", techniques: [], knowledgeModule: "内能 · 比热容 · 热机", sourceStatus: "示例 · 原卷出处待核对", grade: 'junior', year: '2023', province: '成都中考', module: '初中热学', topic: '比热容吸热计算',
+    { id: "specific-heat", techniques: [], knowledgeModule: "内能 · 比热容 · 热机", source: { status: 'unverified', originalLabel: { year: '2023', paper: '成都中考' } }, grade: 'junior', module: '初中热学', topic: '比热容吸热计算',
       content: '把质量 m = 2 kg 的水从 20℃ 加热到 100℃，需要吸收多少热量？水的比热容 c = 4.2×10³ J/(kg·℃)。',
       analysis: 'Q = cmΔt = 4.2×10³ × 2 × 80 = 6.72×10⁵ J。' }
   ];
@@ -442,4 +442,3 @@ window.KAIQIAO = (function() {
 
   return { techDetail, seniorCategories, juniorCategories, questions, modules, testimonials };
 })();
-

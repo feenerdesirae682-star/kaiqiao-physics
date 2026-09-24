@@ -5,16 +5,44 @@ window.KQ = (() => {
   const techHref = name => `techniques.html?${new URLSearchParams({g:gradeOf(name),tech:name})}`;
   const questionHref = question => `questions.html?${new URLSearchParams({g:question.grade,question:question.id})}`;
   const related = name => KAIQIAO.questions.filter(q => q.techniques.includes(name));
+  // 未知状态按未核对处理；原始年份/卷名仅供维护者核对，不对学生展示。
+  const sourceLabel = q => q.source?.status === 'teaching-example' ? '本站教学示例' : '学习示例 · 出处待核对';
+  const sourceNotice = q => q.source?.status === 'teaching-example'
+    ? '本题为本站编写的教学示例，不标称试卷原题。'
+    : '本题按本站现有题干整理，尚未核对原卷、题号及原卷答案；请作为学习示例使用。';
   const stats = {details:Object.keys(KAIQIAO.techDetail).length,questions:KAIQIAO.questions.length,modules:KAIQIAO.modules.length};
   let onClose = null;
+  let trigger = null;
+  function finishClose() {
+    document.body.classList.remove('dialog-open');
+    const callback = onClose;
+    onClose = null;
+    callback?.();
+    if (trigger?.isConnected) trigger.focus({preventScroll:true});
+    trigger = null;
+  }
+  function closeDetail(dialog) {
+    if (typeof dialog.showModal === 'function') dialog.close();
+    else { dialog.removeAttribute('open'); finishClose(); }
+  }
   function show(title, content, closeCallback) {
     const dialog = document.getElementById('detail-dialog');
+    if (!dialog.hasAttribute('open')) trigger = document.activeElement;
     document.getElementById('detail-title').textContent = title;
     document.getElementById('detail-body').innerHTML = content;
     onClose = closeCallback;
-    if (!dialog.open) dialog.showModal();
+    if (typeof dialog.showModal === 'function') {
+      if (!dialog.open) dialog.showModal();
+      document.body.classList.add('dialog-open');
+    } else {
+      // 无原生 dialog 时降级为可关闭的页内阅读区，不伪装成模态窗口。
+      dialog.classList.add('dialog-fallback');
+      dialog.setAttribute('role', 'region');
+      dialog.setAttribute('open', '');
+      dialog.scrollIntoView({block:'start'});
+      dialog.querySelector('[data-close]').focus({preventScroll:true});
+    }
     dialog.querySelector('.dialog-body').scrollTop = 0;
-    document.body.classList.add('dialog-open');
   }
   function techBody(name) {
     const d = KAIQIAO.techDetail[name];
@@ -33,9 +61,10 @@ window.KQ = (() => {
     document.querySelectorAll('[data-count]').forEach(el => el.textContent = stats[el.dataset.count]);
     const dialog = document.getElementById('detail-dialog');
     if (!dialog) return;
-    dialog.querySelector('[data-close]').addEventListener('click',()=>dialog.close());
-    dialog.addEventListener('click',event=>{ if(event.target===dialog) {const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();} });
-    dialog.addEventListener('close',()=>{document.body.classList.remove('dialog-open');onClose?.();onClose=null;});
+    dialog.querySelector('[data-close]').addEventListener('click',()=>closeDetail(dialog));
+    dialog.addEventListener('click',event=>{ if(event.target===dialog) {const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeDetail(dialog);} });
+    dialog.addEventListener('close',finishClose);
+    dialog.addEventListener('keydown',event=>{if(event.key==='Escape' && dialog.classList.contains('dialog-fallback'))closeDetail(dialog);});
   });
-  return {escape,gradeOf,techHref,questionHref,related,stats,show,techBody};
+  return {escape,gradeOf,techHref,questionHref,related,stats,show,techBody,sourceLabel,sourceNotice};
 })();

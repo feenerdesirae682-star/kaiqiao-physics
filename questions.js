@@ -16,7 +16,7 @@ function render(){
   document.querySelectorAll('[data-grade]').forEach(b=>{const selected=b.dataset.grade===grade;b.classList.toggle('on',selected);b.setAttribute('aria-pressed',selected);});
   const list=KAIQIAO.questions.filter(q=>(grade==='all'||q.grade===grade)&&(!technique||q.techniques.includes(technique))&&(!moduleName||q.knowledgeModule===moduleName)&&`${q.topic} ${q.module} ${q.content}`.toLowerCase().includes(query.toLowerCase()));
   document.getElementById('question-count').textContent=`找到 ${list.length} 道学习示例`;
-  document.getElementById('qgrid').innerHTML=list.map(q=>`<button class="qcard" data-question="${q.id}" aria-haspopup="dialog"><span class="chip ${q.grade==='senior'?'red':''}">${q.grade==='junior'?'初中':'高中'} · 示例</span><h2>${KQ.escape(q.topic)}</h2><p>${KQ.escape(q.content.split('\n')[0].slice(0,110))}${q.content.length>110?'…':''}</p><span class="card-end">${q.techniques.length?'已关联大招':'含解题过程'} <b>开始练习 →</b></span></button>`).join('');
+  document.getElementById('qgrid').innerHTML=list.map(q=>`<button class="qcard" data-question="${q.id}" aria-haspopup="dialog"><span class="chip ${q.grade==='senior'?'red':''}">${q.grade==='junior'?'初中':'高中'} · ${KQ.escape(KQ.sourceLabel(q))}</span><h2>${KQ.escape(q.topic)}</h2><p>${KQ.escape(q.content.split('\n')[0].slice(0,110))}${q.content.length>110?'…':''}</p><span class="card-end">${q.techniques.length?'已关联大招':'含解题过程'} <b>开始练习 →</b></span></button>`).join('');
   document.getElementById('empty').hidden=list.length>0;
   document.getElementById('active-filter').hidden=!technique&&!moduleName;
   document.getElementById('active-filter-label').textContent=technique?`关联大招：${technique}`:`知识模块：${moduleName}`;
@@ -26,7 +26,8 @@ function openQuestion(id){
   const q=KAIQIAO.questions.find(q=>q.id===id);
   if(!q){document.getElementById('page-notice').hidden=false;params.delete('question');sync();return;}
   params.set('question',q.id);sync();
-  KQ.show(q.topic,`<p class="reading-note">${q.grade==='junior'?'初中':'高中'} · ${KQ.escape(q.module)} · ${KQ.escape(q.sourceStatus)}</p>
+  KQ.show(q.topic,`<p class="reading-note">${q.grade==='junior'?'初中':'高中'} · ${KQ.escape(q.module)} · ${KQ.escape(KQ.sourceLabel(q))}</p>
+    <p class="source-note">${KQ.escape(KQ.sourceNotice(q))}</p>
     <div class="condition-box"><h3>先独立尝试</h3><p>先读题并写出思路，准备好后再展开解析。</p></div>
     <div class="modal-section"><h3>题目</h3><div class="pre">${KQ.escape(q.content)}</div></div>
     <details class="answer"><summary>我已尝试，展开解析</summary><div class="pre">${KQ.escape(q.analysis)}</div></details>

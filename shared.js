@@ -148,5 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', e => { if (!nav.contains(e.target)) setOpen(false); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') { setOpen(false); button.focus(); } });
   const mobile = matchMedia('(max-width: 880px)');
-  mobile.addEventListener('change', () => { if (!mobile.matches) setOpen(false); });
+  const resetMenu = () => { if (!mobile.matches) setOpen(false); };
+  if (typeof mobile.addEventListener === 'function') mobile.addEventListener('change', resetMenu);
+  else if (typeof mobile.addListener === 'function') mobile.addListener(resetMenu);
 });

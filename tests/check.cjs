@@ -8,6 +8,7 @@ const root = path.resolve(__dirname, '..');
 const state = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'data.js'), 'utf8'), state);
 const data = state.window.KAIQIAO;
+require('./source-policy.cjs').validateSources(data.questions);
 const catalog = [...data.juniorCategories, ...data.seniorCategories].flatMap(c => c.items);
 assert.equal(new Set(catalog).size, catalog.length, '目录条目必须唯一');
 assert.equal(new Set(data.questions.map(q => q.id)).size, data.questions.length, '例题标识必须唯一');
@@ -29,11 +30,13 @@ for (const name of pages) {
 }
 console.log(`数据检查通过：${Object.keys(data.techDetail).length} 个详解，${data.questions.length} 道例题，${catalog.length} 个目录条目。`);
 if (!process.argv.includes('--browser')) process.exit(0);
-const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const engineName = process.env.BROWSER_ENGINE || 'chromium';
+assert(['chromium', 'webkit', 'firefox'].includes(engineName), '未知浏览器引擎');
+const engine = require(process.env.PLAYWRIGHT_MODULE || 'playwright')[engineName];
 const screenshotDir = process.env.SCREENSHOT_DIR;
 if (screenshotDir) fs.mkdirSync(screenshotDir, { recursive: true });
 (async () => {
-  const browser = await chromium.launch({ headless: true, ...(process.env.BROWSER_PATH ? { executablePath: process.env.BROWSER_PATH } : { channel: 'msedge' }) });
+  const browser = await engine.launch({ headless: true, ...(process.env.BROWSER_PATH ? { executablePath: process.env.BROWSER_PATH } : {}) });
   try {
     const context = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
     const page = await context.newPage();
@@ -43,14 +46,14 @@ if (screenshotDir) fs.mkdirSync(screenshotDir, { recursive: true });
     await page.route('https://**/*', route => route.abort());
     const url = name => pathToFileURL(path.join(root, name)).href;
     const go = name => page.goto(url(name), { waitUntil: 'domcontentloaded' });
-    for (const width of [360, 390, 768, 1280, 1440]) {
+    for (const width of [320, 360, 390, 568, 768, 1280, 1440]) {
       await page.setViewportSize({ width, height: 900 });
       for (const name of pages) {
         await go(name);
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `${name}/${width} 横向溢出`);
       }
     }
-    console.log('四页 × 五种宽度的响应式检查通过。');
+    console.log(`${engineName}：四页 × 七种宽度的响应式检查通过。`);
     await page.setViewportSize({ width: 390, height: 844 });
     await go('index.html');
     await page.getByRole('button', { name: '打开导航菜单' }).click();
