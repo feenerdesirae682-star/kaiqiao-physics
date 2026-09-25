@@ -843,11 +843,18 @@ window.KAIQIAO = (function() {
       "techniques": [],
       "knowledgeModule": "机械振动与波",
       "source": {
-        "status": "unverified",
+        "status": "bank-adapted",
         "originalLabel": {
           "year": "2025",
           "paper": "新课标卷"
-        }
+        },
+        "bankRef": {
+          "bank": "维护者题库 questions.json（4747 题，2026-09-25 版，SHA-256 35eafc61…e39d6）",
+          "id": 2682,
+          "label": "2025·新课标",
+          "checkedOn": "2026-09-25"
+        },
+        "adaptation": "题库版为多选题，选项 A.1m B.2m C.5m D.6m，答案 BD，题干带队列示意图；本站改为单选，选项 1m/2m/3m/4m，答案 B，无图，并把\"站直即最高点\"写进题干。改写后按 Δx = (n+½)λ 验算，选项中只有 2m 符合。"
       },
       "grade": "senior",
       "module": "高中机械波",
@@ -860,17 +867,24 @@ window.KAIQIAO = (function() {
       "techniques": [],
       "knowledgeModule": "交变电流 · 电磁波",
       "source": {
-        "status": "unverified",
+        "status": "bank-adapted",
         "originalLabel": {
           "year": "2025",
           "paper": "河北卷"
-        }
+        },
+        "bankRef": {
+          "bank": "维护者题库 questions.json（4747 题，2026-09-25 版，SHA-256 35eafc61…e39d6）",
+          "id": 3802,
+          "label": "2025·河北",
+          "checkedOn": "2026-09-25"
+        },
+        "adaptation": "题库版为选图题（四幅 u₂-t 图像，答案 D，对应幅值 9/8·Uₘ、周期不变），带电路图；本站改为求表达式，无电路图，用文字给出 S 接 3、接 2 时接入副线圈的匝数。本站此前按\"接 3 时匝数为 n\"计算得 0.9Uₘ，2026-09-25 改回题库版条件，答案改为 (9/8)Uₘ sin ωt。"
       },
       "grade": "senior",
       "module": "高中交变电流",
       "topic": "变压器抽头切换",
-      "content": "丰宁抽水蓄能电站通过理想变压器调节输出电压 U₂，输入电压 U₁ 不变。已知副线圈总匝数为 n，分接头 1、2 间和 2、3 间的线圈匝数相同，均为 n/10。开关 S 接 3 时输出 u₂ = Uₘ sin(ωt)，求 S 接 2 时 u₂-t 表达式。",
-      "analysis": "U₁ 恒定，输出电压 U₂ 与输出匝数成正比。\n\n接 3 时：匝数 n，幅值 Uₘ。\n接 2 时：匝数 (n − n/10) = 0.9 n。\n\n比例得新幅值 U′ₘ = 0.9 Uₘ。频率 ω 不变。\n\n表达式：u₂′ = 0.9 Uₘ sin(ωt)。"
+      "content": "2024 年底，世界装机容量最大的抽水蓄能电站——河北丰宁抽水蓄能电站全面投产发电。该电站通过理想变压器调节输出电压 U₂，输入电压 U₁ 保持不变。已知副线圈总匝数为 n，分接头 1、2 间和 2、3 间的线圈匝数 n₁₂ = n₂₃ = n/10，开关 S 接 3 时接入副线圈的匝数为 n − 2n/10，接 2 时为 n − n/10。S 接 3 时输出电压的瞬时值 u₂ = Uₘ sin ωt，求 S 接 2 时 u₂ 随 t 变化的表达式。",
+      "analysis": "理想变压器 U₁/U₂ = n₁/n₂；U₁ 与原线圈匝数 n₁ 都不变，所以输出电压与接入副线圈的匝数成正比。\n\n接 3 时：接入匝数 n − 2n/10 = 0.8n，幅值 Uₘ。\n接 2 时：接入匝数 n − n/10 = 0.9n。\n\n新幅值 U′ₘ = (0.9n/0.8n)·Uₘ = (9/8)Uₘ；变压器不改变频率，ω 不变。\n\n表达式：u₂′ = (9/8)Uₘ sin ωt。"
     },
     {
       "id": "adiabatic-compression",
@@ -879,17 +893,23 @@ window.KAIQIAO = (function() {
       ],
       "knowledgeModule": "分子动理论 · 热力学",
       "source": {
-        "status": "unverified",
+        "status": "bank-original",
         "originalLabel": {
           "year": "2025",
           "paper": "重庆卷"
+        },
+        "bankRef": {
+          "bank": "维护者题库 questions.json（4747 题，2026-09-25 版，SHA-256 35eafc61…e39d6）",
+          "id": 4234,
+          "label": "2025·重庆",
+          "checkedOn": "2026-09-25"
         }
       },
       "grade": "senior",
       "module": "高中热力学",
       "topic": "气袋绝热压缩",
-      "content": "易碎物品运输采用缓冲气袋。某次撞击中，气袋被压缩，不计袋内气体与外界的热交换，则该过程中袋内气体（视为理想气体）\n\nA．分子热运动的平均动能增加\nB．内能减小\nC．压强减小\nD．对外界做正功",
-      "analysis": "\"不计热交换\" → Q = 0；\"被压缩\" → 外界做功，W > 0。\n\n热一律 ΔU = W + Q → ΔU > 0，内能增加。\n理想气体内能由温度决定，温度升高。\n温度升高 → 分子平均动能增加。\n\n答案：A。"
+      "content": "易碎物品运输中常采用缓冲气袋减小运输中冲击。若某次撞击过程中，气袋被压缩（无破损），不计袋内气体与外界的热交换，则该过程中袋内气体（视为理想气体）\n\nA．分子热运动的平均动能增加\nB．内能减小\nC．压强减小\nD．对外界做正功",
+      "analysis": "\"不计热交换\" → Q = 0；\"被压缩\" → 外界对气体做功，W > 0。\n\n热一律 ΔU = W + Q → ΔU > 0，内能增加，B 错。\n理想气体内能由温度决定，温度升高 → 分子平均动能增加，A 对。\n体积减小、温度升高，由 pV/T 恒定得压强增大，C 错。\n被压缩是外界对气体做功，气体对外界做负功，D 错。\n\n答案：A。"
     },
     {
       "id": "melting-ice",

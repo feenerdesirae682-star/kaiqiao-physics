@@ -20,7 +20,9 @@ for (const [name, detail] of Object.entries(data.techDetail)) {
 }
 assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='reviewed').length, 81, '已审校方法数量变化须人工复核（2026-09-25 第一批 20 → 28、第二批 28 → 43、第三批 43 → 78、第四批 78 → 81，见 CONTENT_REVIEW_BATCH1/2/3/4.md）');
 assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='draft').length, 0, '待审校方法数量变化须人工复核（2026-09-25 第一批 61 → 53、第二批 53 → 38、第三批 38 → 3、第四批 3 → 0）');
-assert.equal(data.questions.filter(q=>q.source.status==='unverified').length, 16, '待核对题目数量变化须人工复核');
+assert.equal(data.questions.filter(q=>q.source.status==='unverified').length, 13, '待核对题目数量变化须人工复核（2026-09-25 维护者题库核对：16 → 13，见 SOURCE_VERIFICATION_BATCH2.md）');
+assert.equal(data.questions.filter(q=>q.source.status==='bank-original').length, 1, '与维护者题库一致的题目数量变化须人工复核');
+assert.equal(data.questions.filter(q=>q.source.status==='bank-adapted').length, 2, '据维护者题库改编的题目数量变化须人工复核');
 assert.equal(data.questions.filter(q=>q.source.status==='teaching-example').length, 37, '本站教学示例数量变化须人工复核');
 for (const q of data.questions) {
   assert(data.modules.some(m => m.title === q.knowledgeModule && m.level === q.grade), `知识模块不匹配：${q.id}`);
