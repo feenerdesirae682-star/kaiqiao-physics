@@ -18,8 +18,8 @@ for (const [name, detail] of Object.entries(data.techDetail)) {
   assert(['reviewed', 'draft'].includes(detail.reviewStatus), `详解缺少审校状态：${name}`);
   assert(/^(初中|高中)\/.+/.test(detail.chapter), `详解缺少统一章节映射：${name}`);
 }
-assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='reviewed').length, 20, '已审校方法数量变化须人工复核');
-assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='draft').length, 61, '待审校方法数量变化须人工复核');
+assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='reviewed').length, 28, '已审校方法数量变化须人工复核（2026-09-25 第一批审校：20 → 28，见 CONTENT_REVIEW_BATCH1.md）');
+assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='draft').length, 53, '待审校方法数量变化须人工复核（2026-09-25 第一批审校：61 → 53）');
 assert.equal(data.questions.filter(q=>q.source.status==='unverified').length, 16, '待核对题目数量变化须人工复核');
 assert.equal(data.questions.filter(q=>q.source.status==='teaching-example').length, 37, '本站教学示例数量变化须人工复核');
 for (const q of data.questions) {
