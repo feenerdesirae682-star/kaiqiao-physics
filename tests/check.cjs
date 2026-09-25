@@ -18,8 +18,8 @@ for (const [name, detail] of Object.entries(data.techDetail)) {
   assert(['reviewed', 'draft'].includes(detail.reviewStatus), `详解缺少审校状态：${name}`);
   assert(/^(初中|高中)\/.+/.test(detail.chapter), `详解缺少统一章节映射：${name}`);
 }
-assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='reviewed').length, 78, '已审校方法数量变化须人工复核（2026-09-25 第一批 20 → 28、第二批 28 → 43、第三批 43 → 78，见 CONTENT_REVIEW_BATCH1/2/3.md）');
-assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='draft').length, 3, '待审校方法数量变化须人工复核（2026-09-25 第一批 61 → 53、第二批 53 → 38、第三批 38 → 3；剩余 3 条待原作者决定）');
+assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='reviewed').length, 81, '已审校方法数量变化须人工复核（2026-09-25 第一批 20 → 28、第二批 28 → 43、第三批 43 → 78、第四批 78 → 81，见 CONTENT_REVIEW_BATCH1/2/3/4.md）');
+assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='draft').length, 0, '待审校方法数量变化须人工复核（2026-09-25 第一批 61 → 53、第二批 53 → 38、第三批 38 → 3、第四批 3 → 0）');
 assert.equal(data.questions.filter(q=>q.source.status==='unverified').length, 16, '待核对题目数量变化须人工复核');
 assert.equal(data.questions.filter(q=>q.source.status==='teaching-example').length, 37, '本站教学示例数量变化须人工复核');
 for (const q of data.questions) {
@@ -82,8 +82,11 @@ if (screenshotDir) fs.mkdirSync(screenshotDir, { recursive: true });
     assert.equal(await page.locator('.tech-row').count(), data.juniorCategories.flatMap(c => c.items).filter(n => data.techDetail[n].reviewStatus === 'reviewed').length); // 初中已审校方法数（第二批后为 10）
     await page.getByLabel('仅看已审校方法').uncheck();
     assert.equal(await page.locator('.tech-row').count(), data.juniorCategories.flatMap(c => c.items).length);
-    await page.locator('[data-tech="伏安法测电阻误差速判"]').click();
-    assert(await page.getByText('尚未完成适用条件和推导的逐条教研审校', { exact: false }).isVisible());
+    // 草稿提示：本学段还有草稿就抽查一条必须显示提示；没有草稿则抽查一条已审校方法必须不显示
+    const juniorDraft = data.juniorCategories.flatMap(c => c.items).find(n => data.techDetail[n].reviewStatus === 'draft');
+    await page.locator(`[data-tech="${juniorDraft || '冰化水液面升降速判'}"]`).click();
+    const draftNotice = page.getByText('尚未完成适用条件和推导的逐条教研审校', { exact: false });
+    assert.equal((await draftNotice.count()) > 0 && await draftNotice.isVisible(), Boolean(juniorDraft), '草稿提示应只在草稿方法上显示');
     await page.getByRole('button', { name: '关闭详情' }).click();
     await page.waitForFunction(() => !new URL(location.href).searchParams.has('tech'));
     assert(!new URL(page.url()).searchParams.has('tech'));
