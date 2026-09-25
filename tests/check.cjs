@@ -18,8 +18,8 @@ for (const [name, detail] of Object.entries(data.techDetail)) {
   assert(['reviewed', 'draft'].includes(detail.reviewStatus), `详解缺少审校状态：${name}`);
   assert(/^(初中|高中)\/.+/.test(detail.chapter), `详解缺少统一章节映射：${name}`);
 }
-assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='reviewed').length, 28, '已审校方法数量变化须人工复核（2026-09-25 第一批审校：20 → 28，见 CONTENT_REVIEW_BATCH1.md）');
-assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='draft').length, 53, '待审校方法数量变化须人工复核（2026-09-25 第一批审校：61 → 53）');
+assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='reviewed').length, 43, '已审校方法数量变化须人工复核（2026-09-25 第一批 20 → 28、第二批 28 → 43，见 CONTENT_REVIEW_BATCH1.md / CONTENT_REVIEW_BATCH2.md）');
+assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='draft').length, 38, '待审校方法数量变化须人工复核（2026-09-25 第一批 61 → 53、第二批 53 → 38）');
 assert.equal(data.questions.filter(q=>q.source.status==='unverified').length, 16, '待核对题目数量变化须人工复核');
 assert.equal(data.questions.filter(q=>q.source.status==='teaching-example').length, 37, '本站教学示例数量变化须人工复核');
 for (const q of data.questions) {
@@ -79,17 +79,20 @@ if (screenshotDir) fs.mkdirSync(screenshotDir, { recursive: true });
     await page.getByLabel('搜索大招').fill('不存在的方法');
     assert(await page.locator('#empty').isVisible());
     await page.getByRole('button', { name: '清除搜索，查看本学段详解' }).click();
-    assert.equal(await page.locator('.tech-row').count(), 4);
+    assert.equal(await page.locator('.tech-row').count(), data.juniorCategories.flatMap(c => c.items).filter(n => data.techDetail[n].reviewStatus === 'reviewed').length); // 初中已审校方法数（第二批后为 10）
     await page.getByLabel('仅看已审校方法').uncheck();
     assert.equal(await page.locator('.tech-row').count(), data.juniorCategories.flatMap(c => c.items).length);
-    await page.locator('[data-tech="双漂法测密度"]').click();
+    await page.locator('[data-tech="伏安法测电阻误差速判"]').click();
     assert(await page.getByText('尚未完成适用条件和推导的逐条教研审校', { exact: false }).isVisible());
     await page.getByRole('button', { name: '关闭详情' }).click();
     await page.waitForFunction(() => !new URL(location.href).searchParams.has('tech'));
     assert(!new URL(page.url()).searchParams.has('tech'));
     for (const [index, title, question] of [[0, '冰化水液面升降速判', '冰化盐水液面变化'], [1, '弹性碰撞双极值定论', '弹性碰撞速度交换']]) {
       await go('index.html');
-      await page.locator('.route-card').nth(index).click();
+      await Promise.all([
+        page.waitForURL(/techniques.html/),
+        page.locator('.route-card').nth(index).click()
+      ]);
       assert.equal(await page.locator('#detail-title').innerText(), title);
       assert(await page.locator('.condition-box').isVisible());
       await Promise.all([
