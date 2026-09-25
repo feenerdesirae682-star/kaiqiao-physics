@@ -4,18 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>开窍物理 · 一套贯通的物理大招体系</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="nav"></div>
 
 <!-- ====== HERO ====== -->
-<section style="padding:64px 0 96px;border-top:none;">
+<section id="main-content" tabindex="-1" style="padding:64px 0 96px;border-top:none;">
   <div class="wrap">
-    <div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:80px;align-items:start;">
+    <div  class="grid-two" style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:80px;align-items:start;">
       <div class="rise">
         <div style="display:flex;align-items:center;gap:14px;margin-bottom:32px;">
           <span class="eyebrow">No. 001 · 学期 25/26</span>
@@ -34,17 +31,17 @@
         </p>
 
         <div style="display:flex;gap:14px;flex-wrap:wrap;">
-          <a class="btn seal" href="techniques.html">进入百大大招库 <span class="arr">→</span></a>
-          <a class="btn ghost" href="questions.html">查看真题示范</a>
+          <a class="btn seal" href="techniques.html">进入物理大招库 <span class="arr">→</span></a>
+          <a class="btn ghost" href="questions.html">查看例题示范</a>
         </div>
       </div>
 
-      <div style="position:sticky;top:100px;">
+      <div class="portrait-sticky" style="position:sticky;top:100px;">
         <figure style="margin:0;">
           <div style="position:relative;">
             <div style="position:absolute;inset:0;transform:translate(10px,10px);border:1px solid var(--vermillion);pointer-events:none;"></div>
             <div style="aspect-ratio:4/5;background:var(--paper-2);border:1px solid var(--hair-strong);position:relative;overflow:hidden;">
-              <img src="https://cdn.phototourl.com/free/2026-05-11-bc3f2585-5555-4010-b0dd-62b8f9276950.jpg" alt="开窍物理名师肖像" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              <div class="portrait-fallback"><svg viewBox="0 0 240 180" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><ellipse cx="120" cy="90" rx="100" ry="36"/><ellipse cx="120" cy="90" rx="100" ry="36" transform="rotate(60 120 90)"/><ellipse cx="120" cy="90" rx="100" ry="36" transform="rotate(120 120 90)"/><circle cx="120" cy="90" r="6" fill="currentColor"/></svg><strong>乔凯 · 主讲</strong><span>开眼 · 开脑 · 开手</span><small>人物照片暂未加载</small></div><img class="portrait-image" src="https://cdn.phototourl.com/free/2026-05-11-bc3f2585-5555-4010-b0dd-62b8f9276950.jpg" alt="开窍物理名师肖像" style="width:100%;height:100%;object-fit:cover;display:block;" />
               <div style="position:absolute;left:16px;top:16px;width:48px;height:48px;background:var(--vermillion);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:22px;box-shadow:0 1px 2px rgba(0,0,0,0.15);">开</div>
             </div>
           </div>
@@ -56,7 +53,7 @@
             <div class="mono" style="font-size:11px;color:var(--ink-3);letter-spacing:0.1em;">— 编号 PKU·2017</div>
           </figcaption>
 
-          <div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div  class="grid-two" style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <div style="border:1px solid var(--hair);padding:14px 16px;">
               <div class="mono" style="font-size:10.5px;color:var(--ink-3);letter-spacing:0.14em;text-transform:uppercase;">满分纪录</div>
               <div style="font-family:var(--serif);font-size:18px;font-weight:700;margin-top:6px;line-height:1.3;">高考物理 · 数学 144</div>
@@ -72,32 +69,44 @@
   </div>
 </section>
 
+<section class="learning-start" aria-labelledby="start-title">
+  <div class="wrap">
+    <div class="kicker">从这里开始 · 约 5 分钟</div>
+    <h2 class="h3" id="start-title">选一个学段，完成第一次练习</h2>
+    <div class="learning-routes">
+      <a class="route-card" href="techniques.html?g=junior&amp;tech=冰化水液面升降速判"><span class="chip">初中</span><strong>冰融化后，液面怎么变？</strong><span>适用条件 → 浮力方法 → 练习例题 <b>→</b></span></a>
+      <a class="route-card" href="techniques.html?g=senior&amp;tech=弹性碰撞双极值定论"><span class="chip red">高中</span><strong>碰撞后，两个球怎样运动？</strong><span>适用条件 → 碰撞模型 → 练习例题 <b>→</b></span></a>
+    </div>
+    <p class="reading-note">本站公开 <span data-count="details"></span> 个大招详解、<span data-count="questions"></span> 道学习示例；其余条目作为目录展示。</p>
+  </div>
+</section>
+
 <!-- ====== STATS BAR ====== -->
 <section style="padding:48px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);background:var(--paper-2);">
   <div class="wrap">
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
+    <div  class="grid-four" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
       <div style="padding:0 28px 0 0;border-right:1px solid var(--hair);">
-        <div class="kicker">独家核心大招</div>
-        <div style="font-family:var(--serif);font-size:54px;font-weight:700;line-height:1;letter-spacing:-0.02em;margin-top:8px;"><span class="stat-num" data-target="170">0</span><span style="color:var(--vermillion);font-size:0.55em;vertical-align:0.4em;">＋</span></div>
+        <div class="kicker">公开大招详解</div>
+        <div style="font-family:var(--serif);font-size:54px;font-weight:700;line-height:1;letter-spacing:-0.02em;margin-top:8px;"><span class="stat-num" data-stat="details">0</span><span style="color:var(--vermillion);font-size:0.55em;vertical-align:0.4em;">项</span></div>
         <div style="font-family:var(--serif);font-size:14px;color:var(--ink-3);margin-top:6px;">覆盖初高中全学段</div>
         <svg class="spark" viewBox="0 0 100 28" preserveAspectRatio="none"><path d="M0,22 L12,20 L24,18 L36,14 L48,12 L60,8 L72,6 L84,4 L100,2"/></svg>
       </div>
       <div style="padding:0 28px;border-right:1px solid var(--hair);">
-        <div class="kicker">精编靶向母题</div>
-        <div style="font-family:var(--serif);font-size:54px;font-weight:700;line-height:1;letter-spacing:-0.02em;margin-top:8px;"><span class="stat-num" data-target="5000">0</span><span style="color:var(--vermillion);font-size:0.55em;vertical-align:0.4em;">＋</span></div>
-        <div style="font-family:var(--serif);font-size:14px;color:var(--ink-3);margin-top:6px;">每题对应大招与解析</div>
+        <div class="kicker">公开学习示例</div>
+        <div style="font-family:var(--serif);font-size:54px;font-weight:700;line-height:1;letter-spacing:-0.02em;margin-top:8px;"><span class="stat-num" data-stat="questions">0</span><span style="color:var(--vermillion);font-size:0.55em;vertical-align:0.4em;">项</span></div>
+        <div style="font-family:var(--serif);font-size:14px;color:var(--ink-3);margin-top:6px;">含解析，部分已关联大招</div>
         <svg class="spark" viewBox="0 0 100 28" preserveAspectRatio="none"><path d="M0,24 L14,22 L28,18 L40,18 L52,14 L64,11 L76,8 L88,4 L100,3"/></svg>
       </div>
       <div style="padding:0 28px;border-right:1px solid var(--hair);">
         <div class="kicker">核心模块图谱</div>
-        <div style="font-family:var(--serif);font-size:54px;font-weight:700;line-height:1;letter-spacing:-0.02em;margin-top:8px;"><span class="stat-num" data-target="26">0</span><span style="color:var(--vermillion);font-size:0.55em;vertical-align:0.4em;">章</span></div>
+        <div style="font-family:var(--serif);font-size:54px;font-weight:700;line-height:1;letter-spacing:-0.02em;margin-top:8px;"><span class="stat-num" data-stat="modules">0</span><span style="color:var(--vermillion);font-size:0.55em;vertical-align:0.4em;">章</span></div>
         <div style="font-family:var(--serif);font-size:14px;color:var(--ink-3);margin-top:6px;">初中 12 + 高中 14</div>
         <svg class="spark" viewBox="0 0 100 28" preserveAspectRatio="none"><path d="M0,26 L16,24 L32,20 L48,17 L62,13 L76,10 L88,6 L100,4"/></svg>
       </div>
       <div style="padding:0 0 0 28px;">
-        <div class="kicker">真题更新至</div>
-        <div style="font-family:var(--serif);font-size:54px;font-weight:700;line-height:1;letter-spacing:-0.02em;margin-top:8px;">2025</div>
-        <div style="font-family:var(--serif);font-size:14px;color:var(--ink-3);margin-top:6px;">中高考最新原卷收录</div>
+        <div class="kicker">适用学段</div>
+        <div style="font-family:var(--serif);font-size:54px;font-weight:700;line-height:1;letter-spacing:-0.02em;margin-top:8px;">初 · 高</div>
+        <div style="font-family:var(--serif);font-size:14px;color:var(--ink-3);margin-top:6px;">先选学段，再学方法</div>
         <svg class="spark" viewBox="0 0 100 28" preserveAspectRatio="none"><path d="M0,24 L20,22 L40,18 L60,15 L80,10 L100,5"/></svg>
       </div>
     </div>
@@ -120,7 +129,7 @@
       <div class="meta">三段式教学法 / Three-Step Method</div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:48px;">
+    <div  class="grid-three" style="display:grid;grid-template-columns:repeat(3,1fr);gap:48px;">
       <article>
         <div class="mono" style="font-size:11px;letter-spacing:0.16em;color:var(--vermillion);text-transform:uppercase;margin-bottom:14px;">Step Ⅰ</div>
         <h3 class="h3" style="margin:0 0 14px;">开眼 · 看见题目的骨架</h3>
@@ -129,12 +138,12 @@
       <article>
         <div class="mono" style="font-size:11px;letter-spacing:0.16em;color:var(--vermillion);text-transform:uppercase;margin-bottom:14px;">Step Ⅱ</div>
         <h3 class="h3" style="margin:0 0 14px;">开脑 · 调用对应的大招</h3>
-        <p style="font-family:var(--serif);font-size:16px;line-height:1.75;color:var(--ink-2);margin:0;">每一个母题，都有一套已被反复检验的最优解法。我们提炼出 170+ 个这样的底层模型，让学生把"试公式"的时间，置换为对结论的快速调用。</p>
+        <p style="font-family:var(--serif);font-size:16px;line-height:1.75;color:var(--ink-2);margin:0;">从公开大招中学习识别条件、选择公式与推导结论。先读适用条件，再用母题检验理解；其余目录条目会明确标注内容状态。</p>
       </article>
       <article>
         <div class="mono" style="font-size:11px;letter-spacing:0.16em;color:var(--vermillion);text-transform:uppercase;margin-bottom:14px;">Step Ⅲ</div>
-        <h3 class="h3" style="margin:0 0 14px;">开手 · 在真题中固化</h3>
-        <p style="font-family:var(--serif);font-size:16px;line-height:1.75;color:var(--ink-2);margin:0;">所有大招都配套近十年的中高考真题进行实战演练，直到形成肌肉记忆。框架建对了，没见过的题也能做出来。</p>
+        <h3 class="h3" style="margin:0 0 14px;">开手 · 在例题中验证</h3>
+        <p style="font-family:var(--serif);font-size:16px;line-height:1.75;color:var(--ink-2);margin:0;">先独立尝试例题，再展开解析，并返回关联大招复盘。本站公开部分学习示例，原卷出处尚待逐题核对。</p>
       </article>
     </div>
   </div>
@@ -146,13 +155,13 @@
     <div class="section-head">
       <div>
         <div class="num">§ 02 · 方法示证</div>
-        <div class="title">看 <em>·</em> 一道真题，两种解法</div>
+        <div class="title">看 <em>·</em> 一道例题，两种解法</div>
       </div>
-      <div class="meta">2024 北京 · 圆锥摆周期题</div>
+      <div class="meta">学习示例 · 圆锥摆周期</div>
     </div>
 
     <p style="font-family:var(--serif);font-size:18px;line-height:1.8;color:var(--ink-2);max-width:760px;margin:-12px 0 40px;">
-      下方左侧是教科书式的"正统解法" — 没有错，但你要在考场上写完这些步骤。右侧是我们提炼的「等高等时律」 — 直接给出结论，省下 4 分钟，留给那 12 分的压轴大题。
+      左侧从受力分析推导周期，右侧展示如何在满足条件时调用结论。两种方法相互印证：先理解推导，再练习应用。
     </p>
 
     <div class="demo-board">
@@ -162,17 +171,17 @@
           <div class="mono" style="font-size:11px;color:var(--ink-3);letter-spacing:0.1em;">8 步</div>
         </div>
         <h4 style="font-family:var(--serif);font-size:20px;font-weight:600;margin:0 0 18px;">从受力到联立方程</h4>
-        <div class="demo-step"><span class="n">01</span><span>对小球画受力示意图：重力 G、绳张力 T</span></div>
-        <div class="demo-step"><span class="n">02</span><span>沿水平、竖直方向分解张力 T sinθ、T cosθ</span></div>
-        <div class="demo-step"><span class="n">03</span><span>竖直方向：T cosθ = mg</span></div>
-        <div class="demo-step"><span class="n">04</span><span>水平方向：T sinθ = mω²r（向心力公式）</span></div>
+        <div class="demo-step"><span class="n">01</span><span>对小球画受力示意图：重力 G、绳张力 F</span></div>
+        <div class="demo-step"><span class="n">02</span><span>沿水平、竖直方向分解张力 F sinθ、F cosθ</span></div>
+        <div class="demo-step"><span class="n">03</span><span>竖直方向：F cosθ = mg</span></div>
+        <div class="demo-step"><span class="n">04</span><span>水平方向：F sinθ = mω²r（向心力公式）</span></div>
         <div class="demo-step"><span class="n">05</span><span>圆周半径 r = L sinθ（几何关系）</span></div>
-        <div class="demo-step"><span class="n">06</span><span>联立消去 T、r，得 ω² = g/(L cosθ)</span></div>
+        <div class="demo-step"><span class="n">06</span><span>联立消去 F、r，得 ω² = g/(L cosθ)</span></div>
         <div class="demo-step"><span class="n">07</span><span>由 ω = 2π/T 求出周期</span></div>
         <div class="demo-step"><span class="n">08</span><span>整理：T = 2π·√(L cosθ / g)</span></div>
         <div class="demo-stat">
-          <div>用时<div class="big">4′ 30″</div></div>
-          <div style="text-align:right;">易错点<div class="big" style="color:var(--ink-2);">3 处</div></div>
+          <div>方法<div class="big">受力推导</div></div>
+          <div style="text-align:right;">重点<div class="big" style="color:var(--ink-2);">分解力</div></div>
         </div>
       </div>
 
@@ -181,25 +190,25 @@
       <div class="demo-col good">
         <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;">
           <div class="mono" style="font-size:11px;letter-spacing:0.16em;color:var(--vermillion);text-transform:uppercase;">开窍大招 · 等高等时律</div>
-          <div class="mono" style="font-size:11px;color:var(--vermillion);letter-spacing:0.1em;">1 步</div>
+          <div class="mono" style="font-size:11px;color:var(--vermillion);letter-spacing:0.1em;">条件 + 公式</div>
         </div>
         <h4 style="font-family:var(--serif);font-size:20px;font-weight:600;margin:0 0 18px;">认形 · 套定式</h4>
         <div class="demo-step"><span class="n">认形</span><span>圆锥摆 — 立刻调用「等高等时律」</span></div>
-        <div class="demo-step"><span class="n">定式</span><span>所有挂点等高的圆锥摆，周期由竖直高度决定</span></div>
+        <div class="demo-step"><span class="n">定式</span><span>周期由悬点到圆周轨道平面的竖直距离 h 决定</span></div>
         <div class="demo-step"><span class="n">公式</span><span><strong>T = 2π·√(h / g)</strong>，其中 h = L cosθ</span></div>
         <div class="demo-step"><span class="n">代入</span><span>直接写出 T = 2π·√(L cosθ / g)。结束。</span></div>
         <div style="margin-top:18px;padding:14px 16px;background:var(--paper-2);border:1px solid var(--hair);font-family:var(--serif);font-size:14.5px;color:var(--ink-2);font-style:italic;">
-          延展：同一根杆下挂的所有圆锥摆，无论绳长几何，周期完全相同 — 这是结论级的视野，不是公式级的。
+          适用条件：同一 g 下，h = L cosθ 相同，周期才相同。悬点同高并不意味着 h 相同。
         </div>
         <div class="demo-stat good">
-          <div>用时<div class="big">25″</div></div>
-          <div style="text-align:right;">提速<div class="big">10.8 ×</div></div>
+          <div>方法<div class="big">条件判断</div></div>
+          <div style="text-align:right;">重点<div class="big">认准 h</div></div>
         </div>
       </div>
     </div>
 
     <div style="margin-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;">
-      <div style="font-family:var(--serif);font-size:15.5px;color:var(--ink-3);font-style:italic;">— 类似的对照在大招库中以母题形式被完整收录。</div>
+      <div style="font-family:var(--serif);font-size:15.5px;color:var(--ink-3);font-style:italic;">— 先学周期公式的适用条件，再尝试对应例题。</div>
       <a class="btn ghost" href="techniques.html">查看完整大招库 <span class="arr">→</span></a>
     </div>
   </div>
@@ -211,15 +220,15 @@
     <div class="section-head">
       <div>
         <div class="num">§ 03 · 理论体系</div>
-        <div class="title">百大大招库 <em>·</em> <span style="font-family:var(--serif-en);font-style:italic;font-weight:500;color:var(--ink-3);font-size:0.72em;">Compendium</span></div>
+        <div class="title">物理大招库 <em>·</em> <span style="font-family:var(--serif-en);font-style:italic;font-weight:500;color:var(--ink-3);font-size:0.72em;">Compendium</span></div>
       </div>
-      <div class="meta">收录 170+ 模型 / 持续更新</div>
+      <div class="meta">公开详解与目录 / 分别标注</div>
     </div>
 
-    <div id="tech-preview" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--hair);"></div>
+    <div id="tech-preview"  class="grid-four" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--hair);"></div>
 
     <div style="margin-top:48px;display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--hair);">
-      <div style="font-family:var(--serif);font-size:18px;color:var(--ink-2);">以上仅为索引节选 — 完整 170+ 模型见大招库正文。</div>
+      <div style="font-family:var(--serif);font-size:18px;color:var(--ink-2);">以上为公开详解节选；进入大招库可筛选学段与内容状态。</div>
       <a class="btn" href="techniques.html">进入大招库 <span class="arr">→</span></a>
     </div>
   </div>
@@ -230,20 +239,20 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <div class="num">§ 04 · 真题示范</div>
-        <div class="title">26 大模块 <em>·</em> 5000+ 母题</div>
+        <div class="num">§ 04 · 例题示范</div>
+        <div class="title">知识模块 <em>·</em> 公开例题</div>
       </div>
-      <div class="meta">最新至 2025 年中高考原卷</div>
+      <div class="meta">学习示例 · 原卷出处待核对</div>
     </div>
 
-    <div id="modules-list" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px;"></div>
+    <div id="modules-list"  class="grid-three" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px;"></div>
 
-    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start;">
+    <div  class="grid-two" style="display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start;">
       <div id="featured-question"></div>
       <aside style="border-left:3px solid var(--vermillion);padding:6px 0 6px 24px;">
         <div class="kicker" style="color:var(--vermillion);">编者按</div>
-        <p style="font-family:var(--serif);font-size:17px;line-height:1.8;color:var(--ink-2);margin:10px 0 18px;">真题不是为了刷量，而是为了校准你对模型的认识。我们建议：先看左侧母题，自己尝试 3 分钟，再展开开窍解析，对比思路差距。</p>
-        <a class="btn ghost" href="questions.html">查看更多真题 <span class="arr">→</span></a>
+        <p style="font-family:var(--serif);font-size:17px;line-height:1.8;color:var(--ink-2);margin:10px 0 18px;">例题不是为了刷量，而是为了校准你对模型的认识。我们建议：先看左侧母题，自己尝试 3 分钟，再展开开窍解析，对比思路差距。</p>
+        <a class="btn ghost" href="questions.html">查看更多例题 <span class="arr">→</span></a>
       </aside>
     </div>
   </div>
@@ -259,127 +268,16 @@
       </div>
       <div class="meta">节选 · 经本人许可发布</div>
     </div>
-    <div id="testi" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;"></div>
+    <div id="testi"  class="grid-three" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;"></div>
   </div>
 </section>
 
 <div id="footer"></div>
 
-<!-- ====== TECH MODAL ====== -->
-<div id="tech-modal" class="modal-back" onclick="closeModal('tech-modal')">
-  <div class="modal" onclick="event.stopPropagation()">
-    <div class="modal-head">
-      <button class="modal-close" onclick="closeModal('tech-modal')">✕</button>
-      <div id="tech-modal-chips" style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;"></div>
-      <h3 id="tech-modal-title"></h3>
-      <div id="tech-modal-tagline" class="tagline"></div>
-    </div>
-    <div class="modal-body" id="tech-modal-body"></div>
-  </div>
-</div>
-
 <script src="data.js"></script>
 <script src="shared.js"></script>
-<script>
-document.getElementById('nav').innerHTML = renderNav('home');
-document.getElementById('footer').innerHTML = renderFooter();
-
-// tech preview
-const techPicks = ['运动学知三求二法','中位速大于中时速','内力公式交叉秒杀','等时圆时间极值法','天体高低轨定性口诀','理想气体温体双看法','冰化水液面升降速判','电表示数变化量比值法'];
-document.getElementById('tech-preview').innerHTML = techPicks.map((t, i) => {
-  const d = KAIQIAO.techDetail[t] || {};
-  const col = i % 4;
-  const row = Math.floor(i / 4);
-  return `<a href="#" onclick="event.preventDefault();openTech('${t}')" style="display:block;padding:28px 24px;${col<3?'border-right:1px solid var(--hair);':''}${row===0?'border-bottom:1px solid var(--hair);':''}text-decoration:none;color:inherit;transition:background .25s;" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='transparent'">
-    <div class="mono" style="font-size:10.5px;letter-spacing:0.14em;color:var(--vermillion);text-transform:uppercase;margin-bottom:14px;">大招 · ${String(i+1).padStart(3,'0')}</div>
-    <div style="font-family:var(--serif);font-size:21px;font-weight:600;line-height:1.3;margin-bottom:10px;letter-spacing:-0.01em;">${t}</div>
-    <div style="font-family:var(--serif);font-size:14px;color:var(--ink-3);line-height:1.55;">${(d.tagline||'').slice(0,28)}</div>
-    <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:center;">
-      <span class="mono" style="font-size:10.5px;color:var(--ink-3);letter-spacing:0.1em;">${d.time?d.time.after:''}</span>
-      <span style="font-family:var(--serif);color:var(--vermillion);font-size:14px;">阅 →</span>
-    </div>
-  </a>`;
-}).join('');
-
-// modules
-document.getElementById('modules-list').innerHTML = KAIQIAO.modules.slice(0,6).map((m,i) => {
-  const tag = m.level === 'junior' ? '初中' : '高中';
-  const tagColor = m.level === 'junior' ? 'var(--ink-2)' : 'var(--vermillion)';
-  return `
-  <a href="questions.html" style="border:1px solid var(--hair);padding:24px 22px;background:var(--paper);text-decoration:none;color:inherit;display:block;transition:border-color .25s;" onmouseover="this.style.borderColor='var(--ink)'" onmouseout="this.style.borderColor='var(--hair)'">
-    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;">
-      <div class="mono" style="font-size:10.5px;letter-spacing:0.14em;color:${tagColor};text-transform:uppercase;">${tag} · Vol. ${String.fromCharCode(8544+i)}</div>
-      <div class="mono" style="font-size:10.5px;letter-spacing:0.1em;color:var(--ink-3);">${m.points.length} 知识点</div>
-    </div>
-    <h4 style="font-family:var(--serif);font-size:22px;font-weight:700;margin:0 0 16px;letter-spacing:-0.01em;">${m.title}</h4>
-    <div style="display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--serif);font-size:14px;color:var(--ink-2);">
-      ${m.points.slice(0,4).map(p => `<span>${p.name}</span>`).join('<span class="divider-dot">·</span>')}
-      ${m.points.length>4 ? `<span class="divider-dot">·</span><span style="color:var(--ink-3);">＋${m.points.length-4}</span>` : ''}
-    </div>
-  </a>`;
-}).join('');
-
-// featured question
-const q0 = KAIQIAO.questions[0];
-document.getElementById('featured-question').innerHTML = `
-  <a href="questions.html" style="display:block;text-decoration:none;color:inherit;border:1px solid var(--ink);background:var(--paper);padding:32px;">
-    <div style="display:flex;gap:8px;margin-bottom:18px;">
-      <span class="chip red">${q0.year} 高考</span>
-      <span class="chip">${q0.province}</span>
-      <span class="chip" style="border-color:transparent;color:var(--ink-3);margin-left:auto;">${q0.module}</span>
-    </div>
-    <h4 style="font-family:var(--serif);font-size:26px;font-weight:700;margin:0 0 16px;letter-spacing:-0.01em;">${q0.topic}</h4>
-    <p style="font-family:var(--serif);font-size:15.5px;line-height:1.75;color:var(--ink-2);margin:0;">${q0.content.split('\\n')[0].slice(0,140)}…</p>
-    <div style="margin-top:24px;display:flex;justify-content:space-between;align-items:center;padding-top:18px;border-top:1px solid var(--hair);">
-      <span class="mono" style="font-size:11px;color:var(--ink-3);letter-spacing:0.1em;">压轴级 · 含开窍秒杀解析</span>
-      <span style="font-family:var(--serif);font-weight:600;color:var(--vermillion);">查看解析 →</span>
-    </div>
-  </a>`;
-
-// testimonials — without prominent score badges
-document.getElementById('testi').innerHTML = KAIQIAO.testimonials.map((t) => `
-  <figure style="margin:0;">
-    <div style="font-family:var(--serif);font-size:64px;line-height:0.5;color:var(--vermillion);height:32px;">"</div>
-    <blockquote style="font-family:var(--serif);font-size:17px;line-height:1.75;color:var(--ink-2);margin:0 0 22px;font-style:italic;">${t.quote}</blockquote>
-    <figcaption style="padding-top:18px;border-top:1px solid var(--hair);">
-      <div style="font-family:var(--serif);font-size:15px;font-weight:600;">— ${t.name}</div>
-      <div style="font-family:var(--serif);font-size:13.5px;color:var(--ink-3);margin-top:2px;">${t.school}</div>
-    </figcaption>
-  </figure>
-`).join('');
-
-// ticker — pure showcase items (no招生)
-const tickerItems = [
-  '170+ 独家大招', '5,000+ 真题母题', '26 大核心模块', '初中 12 · 高中 14 全学段贯通',
-  '北京大学理学硕士主理', '高考物理满分 · 数学 144',
-  '美赛 M 奖 · 全球前 1%', '清北升学规划', '2025 中高考原卷收录'
-];
-document.getElementById('ticker').innerHTML = Array(2).fill(0).map(() =>
-  tickerItems.map(t => `<span>${t}<span class="dot" style="margin-left:48px;">◆</span></span>`).join('')
-).join('');
-
-// modal helpers
-function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
-function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
-window.openModal = openModal; window.closeModal = closeModal;
-
-function openTech(name) {
-  const d = KAIQIAO.techDetail[name];
-  if (!d) return;
-  document.getElementById('tech-modal-title').textContent = name;
-  document.getElementById('tech-modal-tagline').textContent = d.tagline || '';
-  const chips = [`<span class="chip red">理论大招</span>`];
-  if (d.time) chips.push(`<span class="chip">${d.time.after}</span>`);
-  document.getElementById('tech-modal-chips').innerHTML = chips.join('');
-  document.getElementById('tech-modal-body').innerHTML = `
-    <div class="modal-section"><h4>核心痛点</h4><p>${d.explanation||''}</p></div>
-    <div class="modal-section"><h4>母题与推演</h4><div class="pre">${d.example||''}</div></div>
-    <div class="modal-section summary"><h4 style="color:var(--vermillion);">开窍秒杀总结</h4><div class="pre">${d.summary||''}</div></div>
-    ${d.time?`<div style="display:flex;gap:24px;padding:16px 20px;background:var(--paper-2);border:1px solid var(--hair);"><div><div class="kicker">传统</div><div style="font-family:var(--serif);font-size:16px;margin-top:4px;text-decoration:line-through;color:var(--ink-3);">${d.time.before}</div></div><div style="font-family:var(--serif);font-size:22px;color:var(--vermillion);align-self:center;">→</div><div><div class="kicker" style="color:var(--vermillion);">开窍</div><div style="font-family:var(--serif);font-size:16px;margin-top:4px;color:var(--vermillion);font-weight:600;">${d.time.after}</div></div></div>`:''}
-  `;
-  openModal('tech-modal');
-}
-window.openTech = openTech;
-</script>
+<script src="learning.js"></script>
+<script src="home.js"></script>
 </body>
 </html>
+

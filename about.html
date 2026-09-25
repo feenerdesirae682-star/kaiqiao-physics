@@ -4,15 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>名师档案 · 开窍物理</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="nav"></div>
 
-<header style="padding:72px 0 56px;border-bottom:1px solid var(--hair);">
+<header id="main-content" tabindex="-1" style="padding:72px 0 56px;border-bottom:1px solid var(--hair);">
   <div class="wrap">
     <div class="kicker" style="margin-bottom:18px;">§ 04 · 名师档案 / DOSSIER</div>
     <h1 class="h2" style="margin:0 0 18px;">乔凯 <em style="font-style:italic;color:var(--ink-3);font-family:var(--serif-en);font-weight:500;">— Principal Tutor</em></h1>
@@ -22,12 +19,12 @@
 
 <section class="reveal" style="padding:80px 0;">
   <div class="wrap">
-    <div style="display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:start;">
+    <div  class="grid-two" style="display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:start;">
       <aside>
         <div style="position:relative;">
           <div style="position:absolute;inset:0;transform:translate(10px,10px);border:1px solid var(--vermillion);pointer-events:none;"></div>
           <div style="aspect-ratio:4/5;background:var(--paper-2);border:1px solid var(--hair-strong);position:relative;overflow:hidden;">
-            <img src="https://cdn.phototourl.com/free/2026-05-11-bc3f2585-5555-4010-b0dd-62b8f9276950.jpg" alt="乔凯" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <div class="portrait-fallback"><svg viewBox="0 0 240 180" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><ellipse cx="120" cy="90" rx="100" ry="36"/><ellipse cx="120" cy="90" rx="100" ry="36" transform="rotate(60 120 90)"/><ellipse cx="120" cy="90" rx="100" ry="36" transform="rotate(120 120 90)"/><circle cx="120" cy="90" r="6" fill="currentColor"/></svg><strong>乔凯 · 主讲</strong><span>开眼 · 开脑 · 开手</span><small>人物照片暂未加载</small></div><img class="portrait-image" src="https://cdn.phototourl.com/free/2026-05-11-bc3f2585-5555-4010-b0dd-62b8f9276950.jpg" alt="乔凯" style="width:100%;height:100%;object-fit:cover;display:block;" />
             <div style="position:absolute;left:16px;top:16px;width:48px;height:48px;background:var(--vermillion);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:22px;">开</div>
           </div>
         </div>
@@ -49,7 +46,7 @@
         <p style="font-family:var(--serif);font-size:21px;line-height:1.75;color:var(--ink);margin:0 0 24px;letter-spacing:-0.005em;">「框架建对了，没见过的题目也能做出来。」</p>
         <p style="font-family:var(--serif);font-size:17px;line-height:1.85;color:var(--ink-2);margin:0 0 20px;">作为一名理科教研专家，我并不主张题海战术。在长达十余年的物理教学一线，我发现：考场上的差距，更多来自对题目骨架的辨认速度，而非计算量。学生需要的是一套贯通的、可被反复调用的模型库。</p>
         <p style="font-family:var(--serif);font-size:17px;line-height:1.85;color:var(--ink-2);margin:0 0 20px;">基于对近十年全国数万道真题的拆解，我提炼出 170+ 个核心母题模型，配合「<strong style="color:var(--vermillion);">开眼 · 开脑 · 开手</strong>」三段式教学法。从识别、调用到固化，让 15 分钟的繁琐推导压缩为 30 秒的肌肉记忆。</p>
-        <p style="font-family:var(--serif);font-size:17px;line-height:1.85;color:var(--ink-2);margin:0 0 36px;">这套方法以网课大班直播形式公开授课，覆盖初中、高中全学段。本站作为大招体系的目录与教研档案而存在，不接受报名咨询；课程信息请通过我们的网课平台合作方了解。</p>
+        <p style="font-family:var(--serif);font-size:17px;line-height:1.85;color:var(--ink-2);margin:0 0 36px;">本站仅展示部分大招详解与学习示例，不等同于下述完整课程或题库。原卷出处尚待逐题核对。<br>这套方法以网课大班直播形式公开授课，覆盖初中、高中全学段。本站作为大招体系的目录与教研档案而存在，不接受报名咨询；课程信息请通过我们的网课平台合作方了解。</p>
 
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:32px;border-top:1px solid var(--hair);">
           <div class="chip fill-ink">一站式提分平台架构师</div>
@@ -91,3 +88,4 @@ document.getElementById('footer').innerHTML = renderFooter();
 </script>
 </body>
 </html>
+
