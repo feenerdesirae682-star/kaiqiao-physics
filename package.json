@@ -1,0 +1,12 @@
+{
+  "name": "kaiqiao-physics",
+  "private": true,
+  "scripts": {
+    "test": "node tests/run.cjs",
+    "test:browser": "node tests/run.cjs --browser"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
+

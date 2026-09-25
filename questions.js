@@ -41,3 +41,4 @@ document.getElementById('qgrid').addEventListener('click',e=>{const b=e.target.c
 document.getElementById('modules').addEventListener('click',e=>{const b=e.target.closest('[data-module]');if(!b)return;moduleName=b.dataset.module;query='';technique='';search.value='';sync();render();document.getElementById('practice').scrollIntoView();document.getElementById('question-search').focus({preventScroll:true});});
 render();
 if(params.has('question'))openQuestion(params.get('question'));
+

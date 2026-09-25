@@ -48,7 +48,7 @@ window.KQ = (() => {
     const d = KAIQIAO.techDetail[name];
     if (!d) return '<p class="notice">此条目目前仅作目录展示，暂无公开详解。可关闭后选择标注“公开详解”的方法开始学习。</p>';
     const qs = related(name);
-    return `<p class="detail-tagline">${escape(d.tagline)}</p>
+    return `${d.reviewStatus === 'draft' ? '<p class="source-note">此方法来自内容扩充批次，尚未完成适用条件和推导的逐条教研审校；当前作为方法草稿展示。</p>' : ''}<p class="detail-tagline">${escape(d.tagline)}</p>
       <div class="condition-box"><h3>先看适用条件</h3><p>${escape(d.conditions)}</p></div>
       <div class="modal-section"><h3>解决什么问题</h3><p>${escape(d.explanation)}</p></div>
       <div class="modal-section"><h3>母题与推导</h3><div class="pre">${escape(d.example).replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')}</div></div>
@@ -68,3 +68,4 @@ window.KQ = (() => {
   });
   return {escape,gradeOf,techHref,questionHref,related,stats,show,techBody,sourceLabel,sourceNotice};
 })();
+

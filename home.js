@@ -14,3 +14,4 @@ document.getElementById('featured-question').innerHTML=`<a class="featured-card"
 document.getElementById('testi').innerHTML=KAIQIAO.testimonials.map(t=>`<figure class="testimonial"><blockquote>“${KQ.escape(t.quote)}”</blockquote><figcaption>— ${KQ.escape(t.name)}<small>${KQ.escape(t.school)}</small></figcaption></figure>`).join('');
 const items=[`${KQ.stats.details} 个公开大招详解`,`${KQ.stats.questions} 道学习示例`,`${KQ.stats.modules} 个知识模块`,'先看条件 · 再学方法 · 最后练习','初中与高中分学段浏览'];
 document.getElementById('ticker').innerHTML=Array(2).fill(items.map(t=>`<span>${t}<span class="dot"> ◆ </span></span>`).join('')).join('');
+

@@ -49,8 +49,12 @@ async function assertReading(page, label) {
       for (const q of data.questions) {
         await page.goto(href('questions.html', { question:q.id }), {waitUntil:'domcontentloaded'});
         assert.equal(await page.locator('#detail-title').innerText(), q.topic);
-        assert.match(await page.locator('.source-note').innerText(), /尚未核对原卷/);
-        assert(!(await page.locator('dialog').innerText()).includes(q.source.originalLabel.paper), `${q.id}: 不应显示未经核对的卷名`);
+        if (q.source.status === 'unverified') {
+          assert.match(await page.locator('.source-note').innerText(), /尚未核对原卷/);
+          assert(!(await page.locator('dialog').innerText()).includes(q.source.originalLabel.paper), `${q.id}: 不应显示未经核对的卷名`);
+        } else {
+          assert.match(await page.locator('.source-note').innerText(), /本站编写的教学示例/);
+        }
         assert.equal(await page.locator('.answer[open]').count(), 0);
         await page.locator('.answer summary').tap();
         await assertReading(page, `${q.id}/${viewport.width}`);
@@ -71,7 +75,10 @@ async function assertReading(page, label) {
         await page.screenshot({ path:path.join(process.env.SCREENSHOT_DIR, `详情-${viewport.width}x${viewport.height}.png`) });
       }
       await page.goto(href('questions.html'));
-      for (const q of data.questions) assert.match(await page.locator(`[data-question="${q.id}"] .chip`).innerText(), /出处待核对/);
+      for (const q of data.questions) {
+        const expected=q.source.status==='unverified'?/出处待核对/:/本站教学示例/;
+        assert.match(await page.locator(`[data-question="${q.id}"] .chip`).innerText(), expected);
+      }
       const card = page.locator('.qcard').first();
       await card.tap();
       await page.locator('[data-close]').tap();
@@ -108,6 +115,7 @@ async function assertReading(page, label) {
       await context.close();
     }
     assert.deepEqual(errors, [], '页面脚本错误');
-    console.log(`${engineName}：${detailCount} 次详情阅读、16 个来源标签、触控关闭、焦点恢复、断点切换及旧 API/存储降级通过。`);
+    console.log(`${engineName}：${detailCount} 次详情阅读、${data.questions.length} 个来源标签、触控关闭、焦点恢复、断点切换及旧 API/存储降级通过。`);
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; });
+

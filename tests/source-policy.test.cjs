@@ -22,3 +22,4 @@ test('阻止丢失核对线索或把待核对原卷改称本站原创', () => {
   const other = example(); other.source.status = 'teaching-example';
   assert.throws(() => validateSources([other]));
 });
+

@@ -16,3 +16,4 @@ function validateSources(questions) {
   }
 }
 module.exports = { validateSources };
+

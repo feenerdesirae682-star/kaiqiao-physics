@@ -152,3 +152,4 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof mobile.addEventListener === 'function') mobile.addEventListener('change', resetMenu);
   else if (typeof mobile.addListener === 'function') mobile.addListener(resetMenu);
 });
+

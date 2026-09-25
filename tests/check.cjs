@@ -15,7 +15,13 @@ assert.equal(new Set(data.questions.map(q => q.id)).size, data.questions.length,
 for (const [name, detail] of Object.entries(data.techDetail)) {
   assert(catalog.includes(name), `详解未列入目录：${name}`);
   assert(detail.conditions && detail.example && detail.summary, `详解缺少条件或内容：${name}`);
+  assert(['reviewed', 'draft'].includes(detail.reviewStatus), `详解缺少审校状态：${name}`);
+  assert(/^(初中|高中)\/.+/.test(detail.chapter), `详解缺少统一章节映射：${name}`);
 }
+assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='reviewed').length, 20, '已审校方法数量变化须人工复核');
+assert.equal(Object.values(data.techDetail).filter(d=>d.reviewStatus==='draft').length, 61, '待审校方法数量变化须人工复核');
+assert.equal(data.questions.filter(q=>q.source.status==='unverified').length, 16, '待核对题目数量变化须人工复核');
+assert.equal(data.questions.filter(q=>q.source.status==='teaching-example').length, 37, '本站教学示例数量变化须人工复核');
 for (const q of data.questions) {
   assert(data.modules.some(m => m.title === q.knowledgeModule && m.level === q.grade), `知识模块不匹配：${q.id}`);
   for (const name of q.techniques) assert(data.techDetail[name], `关联大招不存在：${q.id}/${name}`);
@@ -74,10 +80,10 @@ if (screenshotDir) fs.mkdirSync(screenshotDir, { recursive: true });
     assert(await page.locator('#empty').isVisible());
     await page.getByRole('button', { name: '清除搜索，查看本学段详解' }).click();
     assert.equal(await page.locator('.tech-row').count(), 4);
-    await page.getByLabel('仅看公开详解').uncheck();
+    await page.getByLabel('仅看已审校方法').uncheck();
     assert.equal(await page.locator('.tech-row').count(), data.juniorCategories.flatMap(c => c.items).length);
     await page.locator('[data-tech="双漂法测密度"]').click();
-    assert(await page.getByText('此条目目前仅作目录展示', { exact: false }).isVisible());
+    assert(await page.getByText('尚未完成适用条件和推导的逐条教研审校', { exact: false }).isVisible());
     await page.getByRole('button', { name: '关闭详情' }).click();
     await page.waitForFunction(() => !new URL(location.href).searchParams.has('tech'));
     assert(!new URL(page.url()).searchParams.has('tech'));
@@ -86,14 +92,20 @@ if (screenshotDir) fs.mkdirSync(screenshotDir, { recursive: true });
       await page.locator('.route-card').nth(index).click();
       assert.equal(await page.locator('#detail-title').innerText(), title);
       assert(await page.locator('.condition-box').isVisible());
-      await page.locator('.related-link').first().click();
+      await Promise.all([
+        page.waitForURL(/questions\.html/),
+        page.locator('.related-link').first().click()
+      ]);
       assert.equal(await page.locator('#detail-title').innerText(), question);
       assert.equal(await page.locator('.answer').getAttribute('open'), null);
       await page.getByText('我已尝试，展开解析', { exact: true }).click();
       assert(await page.locator('.answer .pre').isVisible());
       assert(await page.evaluate(() => {const b=document.querySelector('.dialog-body');return b.scrollWidth<=b.clientWidth+1;}));
       if (screenshotDir && index === 0) await page.screenshot({ path: path.join(screenshotDir, '手机例题解析.png') });
-      await page.locator('.related-link').first().click();
+      await Promise.all([
+        page.waitForURL(/techniques\.html/),
+        page.locator('.related-link').first().click()
+      ]);
       assert.equal(await page.locator('#detail-title').innerText(), title);
       await page.reload({ waitUntil: 'domcontentloaded' });
       assert(await page.locator('dialog').isVisible());
@@ -131,3 +143,4 @@ if (screenshotDir) fs.mkdirSync(screenshotDir, { recursive: true });
     console.log('全部例题链接、知识模块回跳、无效链接和例题搜索检查通过；无页面脚本错误。');
   } finally { await browser.close(); }
 })().catch(e => { console.error(e); process.exitCode = 1; });
+
