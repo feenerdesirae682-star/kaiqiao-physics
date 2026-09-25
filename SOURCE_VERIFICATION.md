@@ -11,7 +11,7 @@
 - `verified-adapted`：根据原题改编，改动点已逐项列出并写进题目说明；答案按改编后的题目重新核对。
 - `unverified`：证据不足，继续保持"出处待核对"。
 
-年份与卷名"看起来合理"不构成证据。第三方题库的收录可以作为线索，但不等于官方原卷。**当前数据结构只允许 `unverified` 与 `teaching-example`；要启用两种 verified 状态，需要同时改 `data.js`、`SOURCE_POLICY.md`、页面显示函数（`learning.js` 的 `sourceLabel` / `sourceNotice`）、`tests/source-policy.cjs`、`tests/check.cjs` 的浏览器检查，以及 claude-skills 与 physics-knowledge 的生成脚本。本轮未启用。**
+年份与卷名"看起来合理"不构成证据。第三方题库的收录可以作为线索，但不等于官方原卷。**当前数据结构允许 `unverified`、`teaching-example`、`bank-original`、`bank-adapted` 四种状态（后两种为 2026-09-25 加入的"维护者题库核对"，见 `SOURCE_POLICY.md` 与 `SOURCE_VERIFICATION_BATCH2.md`）；两种 verified 官方核对状态仍未启用，要启用需同时改 `data.js`、`SOURCE_POLICY.md`、`learning.js` 的 `sourceLabel` / `sourceNotice`、`tests/source-policy.cjs`、`tests/check.cjs` 与 `tests/mobile.cjs`，以及 claude-skills 与 physics-knowledge 的生成脚本。**
 
 ## 可用的线索来源
 

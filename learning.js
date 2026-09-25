@@ -5,11 +5,15 @@ window.KQ = (() => {
   const techHref = name => `techniques.html?${new URLSearchParams({g:gradeOf(name),tech:name})}`;
   const questionHref = question => `questions.html?${new URLSearchParams({g:question.grade,question:question.id})}`;
   const related = name => KAIQIAO.questions.filter(q => q.techniques.includes(name));
-  // 未知状态按未核对处理；原始年份/卷名仅供维护者核对，不对学生展示。
-  const sourceLabel = q => q.source?.status === 'teaching-example' ? '本站教学示例' : '学习示例 · 出处待核对';
-  const sourceNotice = q => q.source?.status === 'teaching-example'
-    ? '本题为本站编写的教学示例，不标称试卷原题。'
-    : '本题按本站现有题干整理，尚未核对原卷、题号及原卷答案；请作为学习示例使用。';
+  // 未知状态按未核对处理；原始年份/卷名、题库条目仅供维护者核对，不对学生展示。
+  const SOURCE_LABEL = { 'teaching-example': '本站教学示例', 'bank-original': '学习示例 · 与维护者题库一致', 'bank-adapted': '学习示例 · 据维护者题库改编' };
+  const SOURCE_NOTICE = {
+    'teaching-example': '本题为本站编写的教学示例，不标称试卷原题。',
+    'bank-original': '本题已与维护者自有题库中的同卷题目逐字核对，题干、选项与答案一致；该题库为网络汇编，不等于官方原卷，仍请作为学习示例使用。',
+    'bank-adapted': '本题据维护者自有题库中的同卷题目改编，设问或选项有改动，改动后的答案已重新验算；该题库为网络汇编，不等于官方原卷，仍请作为学习示例使用。'
+  };
+  const sourceLabel = q => SOURCE_LABEL[q.source?.status] || '学习示例 · 出处待核对';
+  const sourceNotice = q => SOURCE_NOTICE[q.source?.status] || '本题按本站现有题干整理，尚未核对原卷、题号及原卷答案；请作为学习示例使用。';
   const stats = {details:Object.keys(KAIQIAO.techDetail).length,questions:KAIQIAO.questions.length,modules:KAIQIAO.modules.length};
   let onClose = null;
   let trigger = null;
