@@ -1,5 +1,7 @@
 # 历史题目来源核验 · 第一批证据台账（2026-09-25）
 
+> **后续政策说明（2026-09-25，第三版来源规则）**：本文件是当时的官方来源调查记录，下列"未检索到官方试卷或答案文件"的结论与逐题证据保持原样，不因政策修订而改写。此后维护者明确确认所有标有高考年份和卷名的高中题均来自高考真题，`SOURCE_POLICY.md` 据此把维护者声明作为确认高考来源的依据、官方原卷改为增强证据：本文件中的 6 道高中题（electric-potential、conical-pendulum、elastic-collision、motional-emf、double-slit、satellite-orbits）改为 `exam-confirmed`，3 道题库核对题维持 `bank-original` / `bank-adapted`，7 道中考标签题维持 `unverified`。对应变更见分支 `source-status/exam-confirmed` 的 PR（合并记录中可查 PR 号）。本文件第四节"所标试卷中找不到对应题 / 卷名冲突"等发现仍然有效，作为日后核对官方材料时的提示。
+
 对象：`data.js` 中 `source.status === "unverified"` 的全部题目，由程序读取，共 16 道。本批只做证据调查，不改任何 `source.status`、`reviewStatus`、方法名称、章节、正文、条件或答案，不生成下游内容，不创建下游 PR。规则见 `SOURCE_POLICY.md` 与 `SOURCE_VERIFICATION.md`。
 
 核验人：Claude（自动调查）。访问日期：2026-09-25。

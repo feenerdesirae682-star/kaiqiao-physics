@@ -49,12 +49,12 @@ async function assertReading(page, label) {
       for (const q of data.questions) {
         await page.goto(href('questions.html', { question:q.id }), {waitUntil:'domcontentloaded'});
         assert.equal(await page.locator('#detail-title').innerText(), q.topic);
-        const noticePattern = { unverified: /尚未核对原卷/, 'teaching-example': /本站编写的教学示例/, 'bank-original': /与维护者自有题库.*一致.*不等于官方原卷/, 'bank-adapted': /据维护者自有题库.*改编.*不等于官方原卷/ }[q.source.status];
+        const noticePattern = { unverified: /尚未核对原卷/, 'teaching-example': /本站编写的教学示例/, 'exam-confirmed': /维护者确认为高考真题.*未附官方原卷链接/, 'bank-original': /确认为高考真题.*与维护者自有题库.*一致.*未附官方原卷链接/, 'bank-adapted': /据高考真题改编.*维护者自有题库.*未附官方原卷链接/ }[q.source.status];
         assert.match(await page.locator('.source-note').innerText(), noticePattern);
         if (q.source.originalLabel) {
           const dialogText = await page.locator('dialog').innerText();
           assert(!dialogText.includes(q.source.originalLabel.paper), `${q.id}: 不应显示未经官方核对的卷名`);
-          assert(!/真题|原卷原题|已核对原卷/.test(dialogText), `${q.id}: 不应出现把学习示例说成原卷的措辞`);
+          assert(!/官方核验|官方原卷已核验|官方原卷一致|原卷原题|已核对原卷/.test(dialogText), `${q.id}: 没有官方材料时不应出现官方核验类措辞`);
         }
         assert.equal(await page.locator('.answer[open]').count(), 0);
         await page.locator('.answer summary').tap();
@@ -77,7 +77,7 @@ async function assertReading(page, label) {
       }
       await page.goto(href('questions.html'));
       for (const q of data.questions) {
-        const expected={ unverified:/出处待核对/, 'teaching-example':/本站教学示例/, 'bank-original':/与维护者题库一致/, 'bank-adapted':/据维护者题库改编/ }[q.source.status];
+        const expected={ unverified:/出处待核对/, 'teaching-example':/本站教学示例/, 'exam-confirmed':/高考真题 · 维护者确认/, 'bank-original':/高考真题 · 与维护者题库一致/, 'bank-adapted':/高考真题改编 · 据维护者题库整理/ }[q.source.status];
         assert.match(await page.locator(`[data-question="${q.id}"] .chip`).innerText(), expected);
       }
       const card = page.locator('.qcard').first();

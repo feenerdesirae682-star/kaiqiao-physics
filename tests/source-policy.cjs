@@ -1,8 +1,8 @@
 const assert = require('node:assert/strict');
 
-// 当前发布流程只允许学习示例：待核对 / 本站教学示例 / 与维护者题库一致 / 据维护者题库改编。
-// 官方原卷认证必须另行评审，不能只改一个显示字符串。
-const STATUSES = ['unverified', 'teaching-example', 'bank-original', 'bank-adapted'];
+// 来源分层（见 SOURCE_POLICY.md）：本站教学示例 / 维护者确认高考真题 / 与维护者题库一致 / 据维护者题库改编 / 出处待核对。
+// 官方原卷核验状态仍未启用；没有官方材料时不能只改一个显示字符串就宣称"官方核验"。
+const STATUSES = ['unverified', 'teaching-example', 'exam-confirmed', 'bank-original', 'bank-adapted'];
 function validateSources(questions) {
   for (const q of questions) {
     assert(q.source && STATUSES.includes(q.source.status), `${q.id}: 非法或缺失的来源状态`);
@@ -15,9 +15,10 @@ function validateSources(questions) {
       assert(!q.source.bankRef && !q.source.adaptation, `${q.id}: 本站教学示例不得携带题库核对字段`);
       continue;
     }
-    assert(label && /^\d{4}$/.test(label.year) && typeof label.paper === 'string' && label.paper.trim(), `${q.id}: 缺少待核对的历史标签`);
-    if (q.source.status === 'unverified') {
-      assert(!q.source.bankRef && !q.source.adaptation, `${q.id}: 待核对题目不得携带题库核对字段`);
+    assert(label && /^\d{4}$/.test(label.year) && typeof label.paper === 'string' && label.paper.trim(), `${q.id}: 缺少年份与卷名标签`);
+    if (q.source.status === 'unverified' || q.source.status === 'exam-confirmed') {
+      assert(!q.source.bankRef && !q.source.adaptation, `${q.id}: 该状态不得携带题库核对字段`);
+      if (q.source.status === 'exam-confirmed') assert(q.grade === 'senior', `${q.id}: 维护者确认高考真题只用于高中题`);
       continue;
     }
     const ref = q.source.bankRef;

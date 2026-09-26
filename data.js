@@ -954,7 +954,7 @@ window.KAIQIAO = (function() {
       "techniques": [],
       "knowledgeModule": "静电场",
       "source": {
-        "status": "unverified",
+        "status": "exam-confirmed",
         "originalLabel": {
           "year": "2024",
           "paper": "全国甲卷"
@@ -973,7 +973,7 @@ window.KAIQIAO = (function() {
       ],
       "knowledgeModule": "圆周运动 · 万有引力",
       "source": {
-        "status": "unverified",
+        "status": "exam-confirmed",
         "originalLabel": {
           "year": "2024",
           "paper": "北京卷"
@@ -993,7 +993,7 @@ window.KAIQIAO = (function() {
       ],
       "knowledgeModule": "动量 · 碰撞",
       "source": {
-        "status": "unverified",
+        "status": "exam-confirmed",
         "originalLabel": {
           "year": "2024",
           "paper": "湖南卷"
@@ -1010,7 +1010,7 @@ window.KAIQIAO = (function() {
       "techniques": [],
       "knowledgeModule": "磁场 · 电磁感应",
       "source": {
-        "status": "unverified",
+        "status": "exam-confirmed",
         "originalLabel": {
           "year": "2023",
           "paper": "新高考Ⅰ卷"
@@ -1027,7 +1027,7 @@ window.KAIQIAO = (function() {
       "techniques": [],
       "knowledgeModule": "光学 · 原子物理",
       "source": {
-        "status": "unverified",
+        "status": "exam-confirmed",
         "originalLabel": {
           "year": "2023",
           "paper": "浙江卷"
@@ -1046,7 +1046,7 @@ window.KAIQIAO = (function() {
       ],
       "knowledgeModule": "圆周运动 · 万有引力",
       "source": {
-        "status": "unverified",
+        "status": "exam-confirmed",
         "originalLabel": {
           "year": "2024",
           "paper": "山东卷"
